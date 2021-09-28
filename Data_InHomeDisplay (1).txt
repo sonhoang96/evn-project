@@ -1,0 +1,796 @@
+Công tơ 1pha, 1 giá 1 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng sinh hoạt",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 1 pha 1 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 1,
+  "TU":"",
+  "TI":"",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "KT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "KT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      }
+    ],
+    "CHARRT_G":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"",
+      "COSFI":"",
+      "P":"100",
+      "Q":"",
+      "F":""
+    }]
+  }
+}
+
+Công tơ 1pha, 1 giá 2 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng sinh hoạt",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 1 pha 1 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 1,
+  "TU":"",
+  "TI":"",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "KT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "KN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VN"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "KT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "KN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VN"
+      }
+    ],
+    "CHARRT_G":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "CHARRT_N":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"",
+      "COSFI":"",
+      "P":"100",
+      "Q":"",
+      "F":""
+    }]
+  }
+}
+
+Công tơ 1 pha 3 giá 1 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng kinh doanh",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 1 pha 3 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 1,
+  "TU":"",
+  "TI":"",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "BT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "CD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "TD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "SG"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "BT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "CD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "TD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "SG"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      }
+    ],
+    "CHARRT":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"",
+      "COSFI":"",
+      "P":"100",
+      "Q":"",
+      "F":""
+    }]
+  }
+}
+
+Công tơ 1 pha 3 giá 2 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng kinh doanh",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 1 pha 3 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 1,
+  "TU":"",
+  "TI":"",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "BT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "CD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "TD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "SG"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "BN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "CN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "TN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "SN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VN"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "BT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "CD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "TD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "SG"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "BN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "CN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "TN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "SN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VN"
+      }
+    ],
+    "CHARRT_G":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "CHARRT_N":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"",
+      "COSFI":"",
+      "P":"100",
+      "Q":"",
+      "F":""
+    }]
+  }
+}
+
+Công tơ 3 pha 1 giá 1 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng sinh hoạt",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 3 pha 1 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 3,
+  "TU":"",
+  "TI":"",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "KT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "KT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      }
+    ],
+    "CHARRT":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"21",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.03"
+    },{
+      "PHASE":"B",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"21",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.03"
+    },{
+      "PHASE":"C",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"21",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.03"
+    }]
+  }
+}
+
+Công tơ 3 pha, 1 giá, 2 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng sinh hoạt",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 3 pha 1 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 3,
+  "TU":"",
+  "TI":"",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "KT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "KN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VN"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "KT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "KN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VN"
+      }
+    ],
+    "CHARRT_G":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "CHARRT_N":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"21",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.03"
+    },{
+      "PHASE":"B",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"21",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.03"
+    },{
+      "PHASE":"C",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"21",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.03"
+    }]
+  }
+}
+
+Công tơ 3 pha, 3 giá 1 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng kinh doanh",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 3 pha 3 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 3,
+  "TU":"10",
+  "TI":"20",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "BT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "CD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "TD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "SG"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "BT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "CD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "TD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "SG"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      }
+    ],
+    "CHARRT":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"12.12",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.6"
+    },{
+      "PHASE":"B",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"12.12",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.6"
+    },{
+      "PHASE":"C",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"12.12",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.6"
+    }]
+  }
+}
+
+Công tơ 3 pha, 3 giá 2 chiều
+
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng kinh doanh",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 3 pha 3 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 3,
+  "TU":"10",
+  "TI":"20",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "BT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "CD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "TD"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "SG"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "BN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "CN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "TN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "SN"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VN"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "BT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "CD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "TD"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "SG"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "BN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "CN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "TN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "SN"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VN"
+      }
+    ],
+    "CHARRT_G":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "CHARRT_N":  [{
+        "NAME": "2021",
+        "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+        "NAME": "2020",
+        "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"12.12",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.6"
+    },{
+      "PHASE":"B",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"12.12",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.6"
+    },{
+      "PHASE":"C",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"12.12",
+      "COSFI":"0.95",
+      "P":"100",
+      "Q":"12.12",
+      "F":"50.6"
+    }]
+  }
+}
+
+Trong đó: 
+CUSTOMER_NAME: Tên khách hàng
+CUSTOMER_ID: 	Mã khách hàng
+CUSTOMER_TYPE: Loại khách hàng
+HOUSE_NUMBER:	Số hộ
+METER_SERIAL: số serial công tơ
+METER_TYPE: Loại công tơ
+MULTIPLIER: Hệ số nhân
+PHASE: số lượng pha
+AMOUNT_CALCULATE: Tiền tạm tính
+LAST_CONSUMPTION: Sản lượng tháng trước
+DATA: Dữ liệu của điểm đo, là json chứa dữ liệu về điểm đo
+INDEX_ELECTRIC: Chỉ số điện năng list Là json array là danh sách theo bộ chỉ số tại thời điểm 0h20
+	INDEX_VALUE: giá trị chỉ số điện năng
+	INDICATOR: bộ chỉ số (KT: Đo đếm không thời gian; BT: Giờ bình thường; CD: Giờ cao điểm; TD: Giờ thấp điểm; KN: Không thời gian chiều nhận; BN: Bình thường nhận; CN: Cao điểm nhận; TN: Thấp điểm nhận, VC: Vô công; VN: Vô công nhận; SG: bộ tổng giao; SN: Bộ tổng nhận
+CONSUMPTION: Thông tin điện tiêu thụ theo từng bộ chỉ số đến thời điểm hiện tại
+	QUANTITY: sản lượng
+	BEGIN: chỉ số đầu
+	END: Chỉ số cuối
+	INDICATOR: bộ chỉ số
+CHARRT_G: Biểu đồ giao so sánh sản lượng tháng hiện tại và sản lượng tháng trước so cùng kỳ với năm trước
+CHARRT_N: Biểu đồ nhận (2 chiều) so sánh sản lượng tháng hiện tại và sản lượng tháng trước so cùng kỳ với năm trước
+	
+	
