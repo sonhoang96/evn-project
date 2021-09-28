@@ -1,7 +1,7 @@
 <template>
   <div class="board">
     <span class="title-header">Chỉ số điện năng</span>
-    <p class="index-electric">{{ "27, 089.19 kWh" }}</p>
+    <p class="index-electric">{{ "27,089.19 kWh" }}</p>
 
     <div class="mesurement-time">
       <img src="../../assets/image-mockup/clock.png"/>
@@ -9,7 +9,7 @@
     </div>
 
     <div class="price-list">
-      <el-row gutter="20">
+      <el-row :gutter="20">
         <el-col :span="8">
           <img src="../../assets/image-mockup/symbol-1.png"/>
           <span>{{ "Biểu giá 1" }}</span>
@@ -43,7 +43,7 @@ export default {
   //height: 500px;
   background: #ffffff;
   border-radius: 24px;
-  padding: 37px;
+  padding: 35px ;
   box-shadow: 0px 0px 5px #d0d0d0;
 
   .title-header {

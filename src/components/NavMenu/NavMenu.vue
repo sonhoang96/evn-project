@@ -80,6 +80,7 @@ div.nav-menu {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 2;
   .el-menu {
     font-size: 14px;
     font-weight: 600;

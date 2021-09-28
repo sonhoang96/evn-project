@@ -2,10 +2,10 @@
   <div id="container">
     <title-content></title-content>
     <el-row class="row-content">
-      <el-col span="16">
+      <el-col :span="15">
         <index-electric-board></index-electric-board>
       </el-col>
-      <el-col span="8">
+      <el-col :span="9">
         <tempo-elec-bill></tempo-elec-bill>
       </el-col>
     </el-row>
