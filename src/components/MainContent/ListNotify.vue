@@ -1,49 +1,91 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="12">
-        <select-component
-            text="Thông báo gần đây"
-            width="100%">
-        </select-component>
+    <el-row :gutter="20">
+      <el-col :span="12" id="select-notify">
+        <select-component text="Thông báo gần đây"> </select-component>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="12" id="search-notify">
         <search-component></search-component>
       </el-col>
     </el-row>
     <el-row>
-      <!--Danh sách-->
+      <board-notify></board-notify>
     </el-row>
   </div>
 </template>
 <script>
-  import SearchComponent from "../SearchComponent";
-  import SelectComponent from "../SelectComponent";
-  export default{
-    name: "ListNotify",
-    components: {SelectComponent, SearchComponent},
-    data() {
-      return {
-        options: [{
-          value: 'Thông báo 1',
-          label: 'Thông báo 1'
-        }, {
-          value: 'Thông báo 2',
-          label: 'Thông báo 2'
-        }, {
-          value: 'Thông báo 3',
-          label: 'Thông báo 3'
-        }, {
-          value: 'Thông báo 4',
-          label: 'Thông báo 4'
-        }, {
-          value: 'Thông báo 5',
-          label: 'Thông báo 5'
-        }]
+import SearchComponent from "../SearchComponent";
+import SelectComponent from "../SelectComponent";
+import BoardNotify from './BoardNotify.vue';
+export default {
+  name: "ListNotify",
+  components: { SelectComponent, SearchComponent, BoardNotify },
+  data() {
+    return {
+      options: [
+        {
+          value: "Thông báo 1",
+          label: "Thông báo 1",
+        },
+        {
+          value: "Thông báo 2",
+          label: "Thông báo 2",
+        },
+        {
+          value: "Thông báo 3",
+          label: "Thông báo 3",
+        },
+        {
+          value: "Thông báo 4",
+          label: "Thông báo 4",
+        },
+        {
+          value: "Thông báo 5",
+          label: "Thông báo 5",
+        },
+      ],
+    };
+  },
+};
+</script>
+<style lang="scss">
+.el-row {
+  input {
+    width: inherit !important;
+    height: 56px;
+    border-radius: 16px;
+    background: #e4e4e4;
+    padding: 18px 0px 18px 23px;
+    &::placeholder {
+      font-size: 14px;
+      font-weight: 600;
+      color: #a9a9ab;
+    }
+    &:focus {
+      border: 1px solid #e4e4e4;
+      box-shadow: 0px 0px 5px #f5f5f5;
+    }
+  }
+  #select-notify {
+    .el-select {
+      width: 100%;
+      .el-input__suffix {
+        .el-input__suffix-inner {
+          margin-right: 10px;
+          i {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b1d21;
+          }
+        }
       }
     }
   }
-</script>
-<style lang="scss">
-
+  #search-notify {
+    .el-autocomplete {
+      width: 100%;
+      height: 56px;
+    }
+  }
+}
 </style>

@@ -3,7 +3,7 @@
       popper-class="my-autocomplete"
       v-model="state"
       :fetch-suggestions="querySearch"
-      placeholder="Please input">
+      placeholder="Tìm kiếm">
     <i
         class="el-icon-edit el-input__icon"
         slot="suffix">
