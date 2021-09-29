@@ -9,6 +9,13 @@
         <tempo-elec-bill></tempo-elec-bill>
       </el-col>
     </el-row>
+    <el-row class="row-chart">
+      <el-col :span="24">
+        <comparison-chart></comparison-chart>
+      </el-col>
+    </el-row>
+    <!--popup board-->
+    <popup></popup>
   </div>
 </template>
 
@@ -16,9 +23,11 @@
 import TitleContent from "./TitleContent";
 import TempoElecBill from "./TemporaryElectricBill";
 import IndexElectricBoard from "./IndexElectrict";
+import ComparisonChart from "./ComparisonChart";
+import Popup from "../PopupNotify";
 export default {
   name: 'MainContent',
-  components: {IndexElectricBoard, TempoElecBill, TitleContent},
+  components: {Popup, ComparisonChart, IndexElectricBoard, TempoElecBill, TitleContent},
 }
 </script>
 
@@ -27,7 +36,10 @@ export default {
   margin: 125px 125px 0;
   text-align: left;
   .row-content{
-    margin-top: 55px
+    margin-top: 55px;
+  }
+  .row-chart{
+    margin-top: 85px;
   }
 }
 </style>

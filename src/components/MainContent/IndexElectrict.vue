@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div id="board">
     <span class="title-header">Chỉ số điện năng</span>
     <p class="index-electric">{{ "27,089.19 kWh" }}</p>
 
@@ -39,7 +39,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.board {
+#board {
   //height: 500px;
   background: #ffffff;
   border-radius: 24px;
@@ -48,7 +48,7 @@ export default {
 
   .title-header {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .index-electric {

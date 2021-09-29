@@ -23,24 +23,25 @@ export default {
 #bill-board {
   height: 470px;
   padding-left: 63px;
+  float: right;
   .bill-board__frame {
-    float: right;
-    width: 400px;
+    width: 340px;
     height: inherit;
     border-radius: 25px;
     background-image: linear-gradient(to top, #254291, #e4353a);
+    box-shadow: 0px 0px 5px #d0d0d0;
     position: relative;
     .bill-board__content {
       position: absolute;
-      width: 384px;
-      height: 354px;
+      width: 325px;
+      height: 359px;
       background: #fff;
       bottom: 8px;
       left: 8px;
       border-radius: 20px;
       #content {
         height: 100%;
-        padding: 18px 24px 14px;
+        padding: 28px 24px 0px;
         span {
           position: static;
           font-size: 14px;

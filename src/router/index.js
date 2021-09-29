@@ -24,6 +24,7 @@ const routes = [
     {
         path: '/notification',
         name: 'Notification',
+        component: () => import("../views/NotificationView")
     },
 ]
 
