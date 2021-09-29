@@ -2,14 +2,7 @@
   <div id="chart">
     <div class="chart-options">
       <span>Chi tiết lượng điện tiêu thụ</span>
-      <el-select v-model="value" placeholder="Theo tháng">
-        <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-        </el-option>
-      </el-select>
+      <select-component text="Theo tháng"></select-component>
     </div>
     <div class="chart-board">
       <chart-board></chart-board>
@@ -18,30 +11,11 @@
 </template>
 
 <script>
-import ChartBoard from "./ChartBoard";
+import ChartBoard from "../ChartBoard";
+import SelectComponent from "../SelectComponent";
 export default {
   name: "ComparisonChart",
-  components: {ChartBoard},
-  data() {
-    return {
-      options: [{
-        value: 'Tháng 1',
-        label: 'Tháng 1'
-      }, {
-        value: 'Tháng 2',
-        label: 'Tháng 2'
-      }, {
-        value: 'Tháng 3',
-        label: 'Tháng 3'
-      }, {
-        value: 'Tháng 4',
-        label: 'Tháng 4'
-      }, {
-        value: 'Tháng 5',
-        label: 'Tháng 5'
-      }]
-    }
-  }
+  components: {SelectComponent, ChartBoard}
 }
 </script>
 

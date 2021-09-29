@@ -2,14 +2,17 @@
   <div id="container">
     <title-content></title-content>
     <el-row class="row-content">
-      <el-col :span="15">
+      <el-col :span="15" v-if="$route.name === 'Electricity Tracking'">
         <index-electric-board></index-electric-board>
+      </el-col>
+      <el-col :span="15" v-else>
+        <list-notify></list-notify>
       </el-col>
       <el-col :span="9">
         <tempo-elec-bill></tempo-elec-bill>
       </el-col>
     </el-row>
-    <el-row class="row-chart">
+    <el-row class="row-chart" v-if="$route.name === 'Electricity Tracking'">
       <el-col :span="24">
         <comparison-chart></comparison-chart>
       </el-col>
@@ -25,9 +28,15 @@ import TempoElecBill from "./TemporaryElectricBill";
 import IndexElectricBoard from "./IndexElectrict";
 import ComparisonChart from "./ComparisonChart";
 import Popup from "../PopupNotify";
+import ListNotify from "./ListNotify";
 export default {
   name: 'MainContent',
-  components: {Popup, ComparisonChart, IndexElectricBoard, TempoElecBill, TitleContent},
+  components: {ListNotify, Popup, ComparisonChart, IndexElectricBoard, TempoElecBill, TitleContent},
+  methods:{
+    log: function (){
+      console.log(this.$route)
+    }
+  }
 }
 </script>
 

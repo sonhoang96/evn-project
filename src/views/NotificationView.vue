@@ -1,14 +1,16 @@
 <template>
   <div class="about">
     <nav-menu />
+    <main-content />
   </div>
 </template>
 
 <script>
 import NavMenu from "../components/NavMenu/NavMenu";
+import MainContent from "../components/MainContent/MainContent";
 export default {
   name: "ElectricityView",
-  components: {NavMenu},
+  components: {MainContent, NavMenu},
 }
 </script>
 
