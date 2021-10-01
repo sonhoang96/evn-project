@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <nav-menu />
+    <nav-menu/>
     <router-view/>
   </div>
 </template>
 
 <script>
 import NavMenu from "./components/NavMenu/NavMenu";
- export default{
-   name: "App",
-   components:{NavMenu}
- }
+
+export default {
+  name: "App",
+  components: {NavMenu}
+}
 </script>
 <style lang="scss">
 @font-face {
@@ -18,6 +19,7 @@ import NavMenu from "./components/NavMenu/NavMenu";
   src: local("Inter"),
   url("./assets/Inter-font/Inter-VariableFont_slnt,wght.ttf") format("truetype");
 }
+
 #app {
   font-family: Inter;
   -webkit-font-smoothing: antialiased;

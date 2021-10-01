@@ -1,13 +1,13 @@
 <template>
   <div id="bill-board">
     <div class="bill-board__frame">
-      <span>Tiền tạm tính tháng {{ "10" }}</span>
+      <span>Tiền tạm tính tháng {{ curMonth }}</span>
       <!-- absolute -->
       <div class="bill-board__content">
         <div id="content">
           <p>Cập nhật 1 ngày trước</p>
-          <p>{{ "240.830" }} <small>VNĐ</small></p>
-          <span>Tương đương {{ "124" + "kWh" }}</span>
+          <p>{{ price }} <small>VNĐ</small></p>
+          <span>Tương đương {{ lastConsumption }} kWh</span>
           <div class="bill-board__content-chart">
             <chart-board
                 color="rgba(24, 113, 198, 0.5)"
@@ -28,26 +28,28 @@
 
 <script>
 import ChartBoard from "../ChartBoard";
+import {
+  createListMonth,
+  getMonth,
+  formatPrice
+} from "../../ultils/constants";
 
 export default {
   name: "TempoElecBill",
   components: {ChartBoard},
   data() {
     return {
-      label: [
-        "Tháng 1",
-        "Tháng 2",
-        "Tháng 3",
-        "Tháng 4",
-        "Tháng 5",
-        "Tháng 6",
-        "Tháng 7",
-      ],
-      dataChart: [
-        [2, 20, 12, 39, 10, 23, 19],
-      ]
+      label: createListMonth(7),
+      price: formatPrice(this.money),
+      curMonth: getMonth()
     }
+  },
+  props: {
+    money: null,
+    lastConsumption: null,
+    dataChart: Array
   }
+  ,
 };
 </script>
 <style lang="scss">

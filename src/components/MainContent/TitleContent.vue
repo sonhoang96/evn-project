@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :span="24" class="title">
-      <span>Xin chào Nguyễn Văn A</span>
+      <span>Xin chào {{customer}}</span>
       <h1>Theo dõi điện</h1>
     </el-col>
   </el-row>
@@ -9,7 +9,11 @@
 
 <script>
 export default {
-  name: "TitleContent"
+  name: "TitleContent",
+  props: ['customer'],
+  mounted() {
+    console.log(this.customer)
+  }
 }
 </script>
 

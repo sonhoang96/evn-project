@@ -11,7 +11,7 @@
           :yAxis=true
           :stacked=true
           :label="label"
-          :dataChart="dataChart"
+          :dataChart="dataToCompare"
           :display=true
       ></chart-board>
     </div>
@@ -21,31 +21,26 @@
 <script>
 import ChartBoard from "../ChartBoard";
 import SelectComponent from "../SelectComponent";
-
+import {createListMonth} from "../../ultils/constants";
 export default {
   name: "ComparisonChart",
   components: {SelectComponent, ChartBoard},
   data(){
-    return{
-      label: [
-        "Tháng 1",
-        "Tháng 2",
-        "Tháng 3",
-        "Tháng 4",
-        "Tháng 5",
-        "Tháng 6",
-        "Tháng 7",
-        "Tháng 8",
-        "Tháng 9",
-        "Tháng 10",
-        "Tháng 11",
-        "Tháng 12",
-      ],
-      dataChart:[
-        [2, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 50],
-        [2, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
-      ]
+    if(this.dataChart){
+      return {
+        dataToCompare : [
+          {...this.dataChart[0], color: "#e4353ad9"},
+          {...this.dataChart[1], color: "#254291d9"}
+        ],
+        label: createListMonth(12)
+      }
     }
+  },
+  props: {
+    dataChart: Array
+  },
+  mounted() {
+    console.log(this.label)
   }
 }
 </script>

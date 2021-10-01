@@ -1,64 +1,72 @@
 <script>
-import { Bar } from "vue-chartjs";
+import {Bar} from "vue-chartjs";
+
 export default {
-  name: "ChartBoard",
+  dname: "ChartBoard",
   extends: Bar,
   mounted() {
-    console.log(this.display)
-    this.renderChart(
-        {
-          labels: this.label || [],
-          datasets: [
-            {
-              label: "Năm 2021",
-              backgroundColor: this.color || "#e4353ad9",
-              barPercentage: 0.5,
-              barThickness: 30,
-              borderRadius: 24,
-              borderWidth: 1,
-              data: this.dataChart[0] || [],
-              // borderSkipped: 'start',
-            },
-            {
-              label: "Năm 2020",
-              barPercentage: 0.5,
-              backgroundColor: "#254291d9",
-              barThickness: 30,
-              borderRadius: 24,
-              borderWidth: 1,
-              data: this.dataChart[1] || [],
-              // borderSkipped: 'start',
-            },
-          ],
-        },
-        {
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            display: this.display
+    const dataSets = this.display ?
+        this.dataChart.map(item => {
+          // Case ComparisionChart has 2 chart and stack
+          return {
+            label: item.NAME,
+            backgroundColor: item.color,
+            barPercentage: 0.5,
+            barThickness: 30,
+            borderRadius: 24,
+            borderWidth: 1,
+            data: item.DATA || [],
+          }
+        })
+        :
+        //Case TemporaryElectricBill has one chart
+        [{
+          label: this.dataChart[0].NAME,
+          backgroundColor: this.color,
+          barPercentage: 0.5,
+          barThickness: 30,
+          borderRadius: 24,
+          borderWidth: 1,
+          data: this.dataChart[0].DATA || [],
+        }]
+
+    //Bar chart generate here
+    if (dataSets) {
+      console.log(dataSets, this.color, 'xxxxxx')
+      this.renderChart(
+          {
+            labels: this.label,
+            datasets: dataSets,
           },
-          scales: {
-            xAxes: [
-              {
-                stacked: this.stacked,
-                display: this.display
-              },
-            ],
-            yAxes: [
-              {
-                stacked: this.stacked,
-                display: this.display
-              },
-            ],
-          },
-        }
-    );
+          {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+              display: this.display
+            },
+            scales: {
+              xAxes: [
+                {
+                  stacked: this.stacked,
+                  display: this.display
+                },
+              ],
+              yAxes: [
+                {
+                  stacked: this.stacked,
+                  display: this.display
+                },
+              ],
+            },
+          }
+      );
+
+    }
   },
-  props:{
+  props: {
     color: String,
     xAxis: Boolean,
     yAxis: Boolean,
-    amount: Number,
     stacked: Boolean,
     label: Array,
     dataChart: Array,

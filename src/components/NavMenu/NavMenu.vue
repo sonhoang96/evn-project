@@ -10,7 +10,9 @@
     >
       <!--Logo-->
       <template>
+        <!--<router-link to="/electricity-tracking">-->
         <img src="../../assets/image-mockup/logo.png" class="el-menu__logo"/>
+        <!--</router-link>-->
       </template>
 
       <!--List menu-->
@@ -42,8 +44,8 @@
         <div class="el-menu__tool-account">
           <img id="account-img" src="../../assets/image-mockup/profile.png"/>
           <div id="account-info">
-            <p>Nguyễn Văn A</p>
-            <p style="color: grey">PD10000011297</p>
+            <p>{{ DATA.CUSTOMER_NAME}}</p>
+            <p style="color: grey">{{ DATA.CUSTOMER_ID }}</p>
           </div>
         </div>
 
@@ -57,13 +59,14 @@
 </template>
 
 <script>
-// import logo from "../../assets/image-mockup/logo.png"
+import DATA from "../../../evn.json";
 export default {
   name: 'NavMenu',
   data() {
     return {
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
+      DATA
     };
   },
   methods: {
@@ -81,6 +84,7 @@ div.nav-menu {
   left: 0;
   width: 100%;
   z-index: 2;
+
   .el-menu {
     font-size: 14px;
     font-weight: 600;

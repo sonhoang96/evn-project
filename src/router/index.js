@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/',
         name: 'Home',
-        component: () => import("../views/ElectricityView"),
         redirect: '/electricity-tracking',
+        component: () => import("../views/ElectricityView"),
         children: [
             {
                 path: '/electricity-tracking',
@@ -25,6 +24,11 @@ const routes = [
         path: '/notification',
         name: 'Notification',
         component: () => import("../views/NotificationView")
+    },
+    {
+        path: '*',
+        name: 'NotFourd',
+        component: () => import("../views/NotFound")
     },
 ]
 

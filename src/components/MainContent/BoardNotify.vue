@@ -29,7 +29,7 @@ export default {
       dataSets: [
         {
           avatar: "../../assets/image-mockup/image-bell-notification.png",
-          office: "PC Đống Đa",
+          office: "PC Đống Đa 1",
           date: "13/09/2021 16:47",
           idUser: "PD10000011297",
           idxElectric: "512kWh",
@@ -37,7 +37,7 @@ export default {
         },
         {
           avatar: "../../assets/image-mockup/image-bell-notification.png",
-          office: "PC Đống Đa",
+          office: "PC Đống Đa 2",
           date: "13/09/2021 16:47",
           idUser: "PD10000011297",
           idxElectric: "512kWh",
@@ -45,7 +45,7 @@ export default {
         },
         {
           avatar: "../../assets/image-mockup/image-bell-notification.png",
-          office: "PC Đống Đa",
+          office: "PC Đống Đa 3",
           date: "13/09/2021 16:47",
           idUser: "PD10000011297",
           idxElectric: "512kWh",
@@ -53,7 +53,7 @@ export default {
         },
         {
           avatar: "../../assets/image-mockup/image-bell-notification.png",
-          office: "PC Đống Đa",
+          office: "PC Đống Đa 4",
           date: "13/09/2021 16:47",
           idUser: "PD10000011297",
           idxElectric: "512kWh",

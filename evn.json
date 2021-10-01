@@ -1,0 +1,55 @@
+{
+  "CUSTOMER_NAME": "NGUYỄN VĂN A",
+  "CUSTOMER_ID": "PD1600124353",
+  "CUSTOMER_TYPE": "Khách hàng sinh hoạt",
+  "HOUSE_NUMBER": "1",
+  "METER_SERIAL": "0001234",
+  "METER_TYPE":"Công tơ điện tử 1 pha 1 giá",
+  "MULTIPLIER": "1",
+  "PHASE": 1,
+  "TU":"",
+  "TI":"",
+  "AMOUNT_CALCULATE": 115000,
+  "LAST_CONSUMPTION": 100,
+  "DATA": {
+    "INDEX_ELECTRIC": [
+      {
+        "INDEX_VALUE": "123",
+        "INDICATOR": "KT"
+      },{
+        "INDEX_VALUE": "123",
+        "INDICATOR": "VC"
+      }
+    ],
+    "CONSUMPTION": [
+      {
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "KT"
+      },{
+        "QUANTITY": 130,
+        "BEGIN": 4860,
+        "END": 4990,
+        "INDICATOR": "VC"
+      }
+    ],
+    "CHARRT_G":  [{
+      "NAME": "2021",
+      "DATA": [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6]
+    }, {
+      "NAME": "2020",
+      "DATA": [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    }],
+    "OPERATIONS":[{
+      "PHASE":"A",
+      "U":"220",
+      "I":"15",
+      "FI_RECTANGLE":"",
+      "COSFI":"",
+      "P":"100",
+      "Q":"",
+      "F":""
+    }]
+  }
+}
