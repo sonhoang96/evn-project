@@ -52,9 +52,9 @@ export default {
 .el-row {
   input {
     width: inherit !important;
-    height: 56px;
+    height: 65px;
     border-radius: 16px;
-    background: #e4e4e4;
+    background: #e4e4e44d;
     padding: 18px 0px 18px 23px;
     &::placeholder {
       font-size: 14px;
@@ -84,7 +84,6 @@ export default {
   #search-notify {
     .el-autocomplete {
       width: 100%;
-      height: 56px;
     }
   }
 }

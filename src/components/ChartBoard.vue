@@ -4,54 +4,65 @@ export default {
   name: "ChartBoard",
   extends: Bar,
   mounted() {
+    console.log(this.display)
     this.renderChart(
         {
-          labels: [
-            "Tháng 1",
-            "Tháng 2",
-            "Tháng 3",
-            "Tháng 4",
-            "Tháng 5",
-            "Tháng 6",
-            "Tháng 7",
-            "Tháng 8",
-            "Tháng 9",
-            "Tháng 10",
-            "Tháng 11",
-            "Tháng 12",
-          ],
+          labels: this.label || [],
           datasets: [
             {
               label: "Năm 2021",
-              backgroundColor: "#e4353ad9",
-              barPercentage: 0.3,
-              data: [2, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 200],
+              backgroundColor: this.color || "#e4353ad9",
+              barPercentage: 0.5,
+              barThickness: 30,
+              borderRadius: 24,
+              borderWidth: 1,
+              data: this.dataChart[0] || [],
+              // borderSkipped: 'start',
             },
             {
               label: "Năm 2020",
-              barPercentage: 0.3,
+              barPercentage: 0.5,
               backgroundColor: "#254291d9",
-              data: [2, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
+              barThickness: 30,
+              borderRadius: 24,
+              borderWidth: 1,
+              data: this.dataChart[1] || [],
+              // borderSkipped: 'start',
             },
           ],
         },
         {
           responsive: true,
           maintainAspectRatio: false,
+          legend: {
+            display: this.display
+          },
           scales: {
             xAxes: [
               {
-                stacked: true,
+                stacked: this.stacked,
+                display: this.display
               },
             ],
             yAxes: [
               {
-                stacked: true,
+                stacked: this.stacked,
+                display: this.display
               },
             ],
           },
         }
     );
   },
+  props:{
+    color: String,
+    xAxis: Boolean,
+    yAxis: Boolean,
+    amount: Number,
+    stacked: Boolean,
+    label: Array,
+    dataChart: Array,
+    display: Boolean,
+  }
 };
 </script>

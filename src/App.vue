@@ -1,9 +1,17 @@
 <template>
   <div id="app">
+    <nav-menu />
     <router-view/>
   </div>
 </template>
 
+<script>
+import NavMenu from "./components/NavMenu/NavMenu";
+ export default{
+   name: "App",
+   components:{NavMenu}
+ }
+</script>
 <style lang="scss">
 @font-face {
   font-family: Inter;

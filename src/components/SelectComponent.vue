@@ -32,8 +32,7 @@
       }
     },
     props:{
-      text: String,
-      width: String
+      text: String
     }
   }
 </script>

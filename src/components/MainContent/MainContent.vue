@@ -1,14 +1,14 @@
 <template>
   <div id="container">
     <title-content></title-content>
-    <el-row class="row-content">
-      <el-col :span="15" v-if="$route.name === 'Electricity Tracking'">
+    <el-row class="row-content" :gutter="70">
+      <el-col :span="16" v-if="$route.name === 'Electricity Tracking'">
         <index-electric-board></index-electric-board>
       </el-col>
-      <el-col :span="15" v-else>
+      <el-col :span="16" v-else>
         <list-notify></list-notify>
       </el-col>
-      <el-col :span="9">
+      <el-col :span="8">
         <tempo-elec-bill></tempo-elec-bill>
       </el-col>
     </el-row>
@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 #container {
-  margin: 125px 125px 0;
+  margin: 125px 114px 0;
   text-align: left;
   .row-content{
     margin-top: 55px;
