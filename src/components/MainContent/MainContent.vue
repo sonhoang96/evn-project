@@ -44,7 +44,7 @@ export default {
     Popup,
     ComparisonChart,
     IndexElectricBoard,
-    TempoElecBill, 
+    TempoElecBill,
     TitleContent
   },
   data() {

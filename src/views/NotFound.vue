@@ -1,7 +1,5 @@
 <template>
-  <div id="not-found">
-
-  </div>
+  <div id="not-found"></div>
 </template>
 
 <script>
