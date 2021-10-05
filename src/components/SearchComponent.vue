@@ -9,8 +9,8 @@
         slot="suffix">
     </i>
     <template slot-scope="{}">
-      <div class="value">{{""}}</div>
-      <span class="link">{{""}}</span>
+      <div class="value">{{ "" }}</div>
+      <span class="link">{{ "" }}</span>
     </template>
   </el-autocomplete>
 </template>

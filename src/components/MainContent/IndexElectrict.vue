@@ -1,7 +1,7 @@
 <template>
   <div id="board">
     <span class="title-header">Chỉ số điện năng</span>
-    <p class="index-electric">{{ "27,089.19 kWh" }}</p>
+    <p class="index-electric">{{ sumIdxElectric }} kWh</p>
 
     <div class="mesurement-time">
       <img src="../../assets/image-mockup/clock.png"/>
@@ -10,23 +10,16 @@
 
     <div class="price-list">
       <el-row :gutter="20">
-        <el-col :span="8">
-          <img src="../../assets/image-mockup/symbol-1.png"/>
-          <span>{{ "Biểu giá 1" }}</span>
-          <p>{{ "15,200.74" }}</p>
-          <el-progress :percentage="56" color="#6C5DD3"></el-progress>
-        </el-col>
-        <el-col :span="8">
-          <img src="../../assets/image-mockup/symbol-2.png"/>
-          <span>{{ "Biểu giá 1" }}</span>
-          <p>{{ "6,775.64" }}</p>
-          <el-progress :percentage="25" color="#FFA2C0"></el-progress>
-        </el-col>
-        <el-col :span="8">
-          <img src="../../assets/image-mockup/symbol-3.png"/>
-          <span>{{ "Biểu giá 1" }}</span>
-          <p>{{ "5,112.81" }}</p>
-          <el-progress :percentage="19" color="#3F8CFF"></el-progress>
+        <el-col :span="8" v-for="(list, index) in handleChangeArr" :key="list.INDICATOR">
+          <img :src="symbol[index]"/>
+          <span>{{ `Biểu giá ${index + 1}` }}</span>
+          <p>{{ list.INDEX_VALUE }} kWh</p>
+          <!--Progress bar-->
+          <el-progress
+              :percentage="list.percentage"
+              :color="color[index]"
+          >
+          </el-progress>
         </el-col>
       </el-row>
     </div>
@@ -34,8 +27,35 @@
 </template>
 
 <script>
+import symbol1 from "../../assets/image-mockup/symbol-1.png"
+import symbol2 from "../../assets/image-mockup/symbol-2.png"
+import symbol3 from "../../assets/image-mockup/symbol-3.png"
+
 export default {
-  name: 'IndexElectricBoard'
+  name: 'IndexElectricBoard',
+  data() {
+    return {
+      color: ["#6C5DD3", "#FFA2C0", "#3F8CFF"],
+      symbol: [symbol1, symbol2, symbol3]
+    }
+  },
+  props: {
+    indexElectric: Array
+  },
+  computed: {
+    handleChangeArr(){
+      let arr = [...this.indexElectric]
+      for (let i = 0; i <= 2; i++) {
+        let percentage = (arr[i]['INDEX_VALUE'] / arr[4]['INDEX_VALUE']) * 100;
+        arr[i].percentage = percentage;
+      }
+      let newArr = arr.filter(item => item.percentage);
+      return newArr
+    },
+    sumIdxElectric(){
+      return this.indexElectric.find(x => x.INDICATOR === "SG")['INDEX_VALUE'];
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -43,8 +63,12 @@ export default {
   //height: 500px;
   background: #ffffff;
   border-radius: 24px;
-  padding: 35px ;
+  padding: 35px;
   box-shadow: 0px 0px 5px #d0d0d0;
+  @media (max-width: 1024px) {
+    padding: 32px;
+    height: 338px;
+  }
 
   .title-header {
     font-size: 18px;
@@ -77,12 +101,18 @@ export default {
       border: 1px solid #E4E4E4;
       border-radius: 16px;
       padding: 45px 24px;
+      @media(max-width: 1024px) {
+        padding: 20px 10px;
+        .el-col {
+          padding: 0 !important;
+          padding-left: 15px !important;
+        }
+      }
 
       .el-col {
         position: relative;
 
         &:nth-child(2) {
-          transform: rotateX(2);
 
           &:before, &:after {
             content: "";
@@ -94,8 +124,20 @@ export default {
             top: -18%;
             left: -10%;
           }
-          &:after{
+
+          &:after {
             left: 90%;
+          }
+
+          @media (max-width: 1024px) {
+            &:before, &:after {
+              height: 90px;
+              top: 0;
+              left: -5%;
+            }
+            &:after {
+              left: 95%;
+            }
           }
         }
 

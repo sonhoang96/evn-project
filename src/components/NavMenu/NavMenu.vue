@@ -89,11 +89,18 @@ div.nav-menu {
     font-size: 14px;
     font-weight: 600;
     height: 80px;
-
+    @media(max-width: 1024px){
+      .el-menu-item{
+        padding: 0 15px;
+      }
+    }
     .el-menu__logo {
       float: left;
       margin: 12px 102px 12px 29px;
       cursor: pointer;
+      @media(max-width: 1200px){
+        margin: 12px 50px 12px 29px;
+      }
     }
 
     li {
@@ -153,6 +160,11 @@ div.nav-menu {
 
       div[class*="el-menu__tool-"] {
         margin-right: 40px;
+      }
+      @media (max-width: 1200px) {
+        .el-menu__tool-list{
+          display: none;
+        }
       }
     }
   }

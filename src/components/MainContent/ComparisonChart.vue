@@ -2,16 +2,15 @@
   <div id="chart">
     <div class="chart-options">
       <span>Chi tiết lượng điện tiêu thụ</span>
-      <select-component text="Theo tháng"></select-component>
+      <select-component text="Theo tháng" :month="handleCreateListMonth"></select-component>
     </div>
     <div class="chart-board">
       <chart-board
-          :amount=7
           :xAxis=true
           :yAxis=true
           :stacked=true
-          :label="label"
-          :dataChart="dataToCompare"
+          :label="handleCreateListMonth"
+          :dataChart="handleAddAtrToData"
           :display=true
       ></chart-board>
     </div>
@@ -21,26 +20,24 @@
 <script>
 import ChartBoard from "../ChartBoard";
 import SelectComponent from "../SelectComponent";
-import {createListMonth} from "../../ultils/constants";
+import {createListMonth} from "../../ultils/functions";
+
 export default {
   name: "ComparisonChart",
   components: {SelectComponent, ChartBoard},
-  data(){
-    if(this.dataChart){
-      return {
-        dataToCompare : [
-          {...this.dataChart[0], color: "#e4353ad9"},
-          {...this.dataChart[1], color: "#254291d9"}
-        ],
-        label: createListMonth(12)
-      }
-    }
-  },
   props: {
     dataChart: Array
   },
-  mounted() {
-    console.log(this.label)
+  computed: {
+    handleCreateListMonth() {
+      return createListMonth(12)
+    },
+    handleAddAtrToData(){
+      return  [
+        {...this.dataChart[0], color: "#e4353ad9"},
+        {...this.dataChart[1], color: "#254291d9"}
+      ]
+    }
   }
 }
 </script>

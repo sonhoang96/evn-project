@@ -2,7 +2,7 @@
 import {Bar} from "vue-chartjs";
 
 export default {
-  dname: "ChartBoard",
+  name: "ChartBoard",
   extends: Bar,
   mounted() {
     const dataSets = this.display ?
@@ -13,8 +13,9 @@ export default {
             backgroundColor: item.color,
             barPercentage: 0.5,
             barThickness: 30,
-            borderRadius: 24,
-            borderWidth: 1,
+            borderWidth: 2,
+            borderRadius: 12,
+            borderSkipped: false,
             data: item.DATA || [],
           }
         })
@@ -25,14 +26,14 @@ export default {
           backgroundColor: this.color,
           barPercentage: 0.5,
           barThickness: 30,
-          borderRadius: 24,
-          borderWidth: 1,
+          borderWidth: 2,
+          borderRadius: 12,
+          borderSkipped: false,
           data: this.dataChart[0].DATA || [],
         }]
 
     //Bar chart generate here
     if (dataSets) {
-      console.log(dataSets, this.color, 'xxxxxx')
       this.renderChart(
           {
             labels: this.label,

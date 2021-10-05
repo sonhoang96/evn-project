@@ -3,7 +3,9 @@
     <title-content :customer="DATA.CUSTOMER_NAME"></title-content>
     <el-row class="row-content" :gutter="70">
       <el-col :span="16" v-if="$route.name === 'Electricity Tracking'">
-        <index-electric-board></index-electric-board>
+        <index-electric-board
+          :indexElectric="DATA.DATA.INDEX_ELECTRIC"
+        ></index-electric-board>
       </el-col>
       <el-col :span="16" v-else>
         <list-notify></list-notify>
@@ -12,14 +14,14 @@
         <tempo-elec-bill
             :money="DATA.AMOUNT_CALCULATE"
             :lastConsumption="DATA.LAST_CONSUMPTION"
-            :dataChart="DATA.DATA.CHARRT_G"
+            :dataChart="DATA.DATA.CHARRT"
         ></tempo-elec-bill>
       </el-col>
     </el-row>
     <el-row class="row-chart" v-if="$route.name === 'Electricity Tracking'">
       <el-col :span="24">
         <comparison-chart
-            :dataChart="DATA.DATA.CHARRT_G"
+            :dataChart="DATA.DATA.CHARRT"
         ></comparison-chart>
       </el-col>
     </el-row>
@@ -59,13 +61,18 @@ export default {
 #container {
   margin: 125px 114px 0;
   text-align: left;
-
+  @media (max-width: 1200px) {
+    margin: 125px 20px 0;
+  }
   .row-content {
     margin-top: 55px;
   }
 
   .row-chart {
     margin-top: 85px;
+    @media (max-width: 1200px){
+      margin-top: 70px;
+    }
   }
 }
 </style>
