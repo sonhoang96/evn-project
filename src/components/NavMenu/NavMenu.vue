@@ -73,6 +73,14 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     }
+  },
+  // computed() {
+  //   handleActiveNav(){
+  //
+  //   }
+  // }
+  mounted() {
+    console.log(this.$route)
   }
 }
 </script>

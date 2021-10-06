@@ -32,8 +32,8 @@ export default {
     handleCreateListMonth() {
       return createListMonth(12)
     },
-    handleAddAtrToData(){
-      return  [
+    handleAddAtrToData() {
+      return [
         {...this.dataChart[0], color: "#e4353ad9"},
         {...this.dataChart[1], color: "#254291d9"}
       ]
