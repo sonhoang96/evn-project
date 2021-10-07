@@ -11,9 +11,6 @@
 export default {
   name: "TitleContent",
   props: ['customer'],
-  mounted() {
-    console.log(this.customer)
-  }
 }
 </script>
 

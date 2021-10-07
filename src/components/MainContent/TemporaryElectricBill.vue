@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import ChartBoard from "../ChartBoard";
+import ChartBoard from "../Common/ChartBoard";
 import {
   createListMonth,
   getMonth,
@@ -35,7 +35,7 @@ import {
 } from "../../ultils/functions";
 
 export default {
-  name: "TempoElecBill",
+  name: "TempoElectricBill",
   components: {ChartBoard},
   props: {
     money: null,

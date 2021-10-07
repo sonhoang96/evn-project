@@ -1,8 +1,8 @@
 <template>
   <el-autocomplete
       popper-class="my-autocomplete"
-      v-model="state"
-      :fetch-suggestions="querySearch"
+      v-model="search"
+      :fetch-suggestions="() => ``"
       placeholder="Tìm kiếm">
     <i
         class="el-icon-edit el-input__icon"
@@ -18,8 +18,20 @@
 <script>
 export default {
   name: "SearchComponent",
-  date() {
-
+  data(){
+    return{
+      textSearch: ''
+    }
+  },
+  computed: {
+    search:{
+      get () {
+        return this.textSearch
+      },
+      set (value) {
+        this.textSearch = value
+      }
+    }
   }
 }
 </script>

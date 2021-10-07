@@ -10,12 +10,13 @@ const {
 const state = {
     listData: [],
     isFetching: false,
-    error: null
+    error: null,
+    notification: false,
 }
 
 const mutations = {
     GET_INDEX_ELECTRICITY_REQUEST: (state) => {
-        return state.isFetching = true
+        state.isFetching = true
     },
     GET_INDEX_ELECTRICITY_SUCCESS: (state, payload) => {
         state.isFetching = false;
@@ -38,7 +39,9 @@ const actions = {
     }
 }
 
-const getter = {}
+const getter = {
+
+}
 
 export default {
     state,

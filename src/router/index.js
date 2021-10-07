@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -7,27 +8,28 @@ const routes = [
         path: '/',
         name: 'Home',
         redirect: '/electricity-tracking',
-        component: () => import("../views/ElectricityView"),
+        component: () => import("../views/MainLayout"),
         children: [
             {
                 path: '/electricity-tracking',
                 name: 'Electricity Tracking',
                 component: () => import("../views/ElectricityView"),
-            }
+            },
+            {
+                path: '/feedback',
+                name: 'FeedBack',
+                component: () => import("../views/FeedBack")
+            },
+            {
+                path: '/notification',
+                name: 'Notification',
+                component: () => import("../views/NotificationView")
+            },
         ]
     },
     {
-        path: '/feedback',
-        name: 'Feedback',
-    },
-    {
-        path: '/notification',
-        name: 'Notification',
-        component: () => import("../views/NotificationView")
-    },
-    {
         path: '*',
-        name: 'NotFourd',
+        name: 'NotFound',
         component: () => import("../views/NotFound")
     },
 ]
@@ -37,6 +39,14 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     scrollBehavior: () => ({y: 0}),
     routes
+})
+router.beforeEach((to, from, next) => {
+    // ...
+    if(to.path){
+        localStorage.setItem("currentPath", to.path)
+        return next()
+    }
+    console.log(to, from)
 })
 
 export default router

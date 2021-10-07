@@ -4,15 +4,19 @@
         :default-active="activeIndex"
         class="el-menu"
         mode="horizontal"
-        @select="handleSelect"
         active-text-color="#E4353A"
         text-color="#171725"
     >
       <!--Logo-->
       <template>
-        <!--<router-link to="/electricity-tracking">-->
-        <img src="../../assets/image-mockup/logo.png" class="el-menu__logo"/>
-        <!--</router-link>-->
+        <router-link to="/electricity-tracking">
+          <img
+              src="../../assets/image-mockup/logo.png"
+              class="el-menu__logo"
+              @click="handleChangeIdxMenu"
+              alt="logo"
+          />
+        </router-link>
       </template>
 
       <!--List menu-->
@@ -30,28 +34,28 @@
 
         <!--Magnifying flass-->
         <div class="el-menu__tool-grass">
-          <img src="../../assets/image-mockup/Magnifying-glass.png"/>
+          <img src="../../assets/image-mockup/Magnifying-glass.png" alt="magnifying glass"/>
           <span></span>
         </div>
 
         <!--Bell-->
         <div class="el-menu__tool-bell">
-          <img src="../../assets/image-mockup/bell.png"/>
-          <img class="el-menu__tool-red-dot" src="../../assets/image-mockup/Notification-sign.png"/>
+          <img src="../../assets/image-mockup/bell.png" alt="bell"/>
+          <img class="el-menu__tool-red-dot" src="../../assets/image-mockup/Notification-sign.png" alt="notification sign"/>
         </div>
 
         <!--Account information-->
         <div class="el-menu__tool-account">
-          <img id="account-img" src="../../assets/image-mockup/profile.png"/>
+          <img id="account-img" src="../../assets/image-mockup/profile.png" alt="profile"/>
           <div id="account-info">
-            <p>{{ DATA.CUSTOMER_NAME}}</p>
-            <p style="color: grey">{{ DATA.CUSTOMER_ID }}</p>
+            <p>{{ Customer.CUSTOMER_NAME }}</p>
+            <p style="color: grey">{{ Customer.CUSTOMER_ID }}</p>
           </div>
         </div>
 
         <!--Retangle-->
         <div class="el-menu__tool-list">
-          <img src="../../assets/image-mockup/Rectangle.png"/>
+          <img src="../../assets/image-mockup/Rectangle.png" alt="rectangle"/>
         </div>
       </div>
     </el-menu>
@@ -60,6 +64,7 @@
 
 <script>
 import DATA from "../../../evn.json";
+
 export default {
   name: 'NavMenu',
   data() {
@@ -69,18 +74,32 @@ export default {
       DATA
     };
   },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+  methods:{
+    handleChangeIdxMenu(){
+      this.activeIndex = "1"
     }
   },
-  // computed() {
-  //   handleActiveNav(){
-  //
-  //   }
-  // }
+  computed: {
+    Customer(){
+      const {CUSTOMER_NAME, CUSTOMER_ID} = this.$store.state.indexElectric.listData;
+      return {CUSTOMER_NAME, CUSTOMER_ID}
+    }
+  },
   mounted() {
-    console.log(this.$route)
+    const path = localStorage.getItem("currentPath")
+    switch (path) {
+      case "/electricity-tracking":
+        this.activeIndex = "1"
+        break;
+      case "/feedback":
+        this.activeIndex = "2"
+        break;
+      case "/notification":
+        this.activeIndex = "3"
+        break;
+      default:
+        this.activeIndex = "1"
+    }
   }
 }
 </script>
@@ -97,16 +116,17 @@ div.nav-menu {
     font-size: 14px;
     font-weight: 600;
     height: 80px;
-    @media(max-width: 1024px){
-      .el-menu-item{
+    @media(max-width: 1024px) {
+      .el-menu-item {
         padding: 0 15px;
       }
     }
+
     .el-menu__logo {
       float: left;
       margin: 12px 102px 12px 29px;
       cursor: pointer;
-      @media(max-width: 1200px){
+      @media(max-width: 1200px) {
         margin: 12px 50px 12px 29px;
       }
     }
@@ -169,8 +189,9 @@ div.nav-menu {
       div[class*="el-menu__tool-"] {
         margin-right: 40px;
       }
+
       @media (max-width: 1200px) {
-        .el-menu__tool-list{
+        .el-menu__tool-list {
           display: none;
         }
       }

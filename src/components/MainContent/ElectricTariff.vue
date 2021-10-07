@@ -12,7 +12,7 @@
       <el-row :gutter="20">
         <el-col :span="8" v-for="(list, index) in handleChangeArr" :key="list.INDICATOR">
           <img :src="symbol[index]"/>
-          <span>{{ `Biểu giá ${index + 1}` }}</span>
+          <span>{{ list.INDICATOR }}</span>
           <p>{{ list.INDEX_VALUE }} kWh</p>
           <!--Progress bar-->
           <el-progress
@@ -32,7 +32,7 @@ import symbol2 from "../../assets/image-mockup/symbol-2.png"
 import symbol3 from "../../assets/image-mockup/symbol-3.png"
 
 export default {
-  name: 'IndexElectricBoard',
+  name: 'ElectricTariff',
   data() {
     return {
       color: ["#6C5DD3", "#FFA2C0", "#3F8CFF"],
@@ -43,16 +43,34 @@ export default {
     indexElectric: Array
   },
   computed: {
-    handleChangeArr(){
+    handleChangeArr() {
       let arr = [...this.indexElectric]
       for (let i = 0; i <= 2; i++) {
         let percentage = (arr[i]['INDEX_VALUE'] / arr[4]['INDEX_VALUE']) * 100;
+        // let indicator = arr[i]['INDICATOR'];
+        // if(indicator === "BT"){
+        //   indicator = "Giờ cao điểm"
+        // }
         arr[i].percentage = percentage;
+        // switch (indicator) {
+        //   case "BT":
+        //     indicator = "Giờ bình thường"
+        //     break;
+        //   case "CD":
+        //     indicator = "Giờ cao điểm"
+        //     break;
+        //   case "TD":
+        //     indicator = "Giờ thấp điểm"
+        //     break;
+        //   default:
+        //     break;
+        // }
       }
       let newArr = arr.filter(item => item.percentage);
+      console.log(newArr)
       return newArr
     },
-    sumIdxElectric(){
+    sumIdxElectric() {
       return this.indexElectric.find(x => x.INDICATOR === "SG")['INDEX_VALUE'];
     }
   }

@@ -21,9 +21,10 @@
             <img
                 src="../assets/image-mockup/arrow-right.png"
                 alt="arrow right"
-                class="arrow-right"
+                :class="className"
                 width="6"
                 height="12"
+                @click="closePopUp"
             >
           </div>
         </el-col>
@@ -34,7 +35,17 @@
 
 <script>
 export default {
-  name: "Popup"
+  name: "Popup",
+  data(){
+    return{
+      className: "arrow-right"
+    }
+  },
+  methods:{
+    closePopUp(){
+      this.change
+    }
+  }
 }
 </script>
 
@@ -45,6 +56,7 @@ export default {
   right: 0;
   width: 383px;
   height: 114px;
+  animation: notify 1s forwards;
   &:after {
     display: block;
     content: "";
@@ -132,6 +144,28 @@ export default {
         top: 25px;
         right: 25px;
       }
+    }
+  }
+  @keyframes notify {
+    0%{
+      right: -100%;
+      opacity: 0;
+    }
+    25%{
+      right: -75%;
+      opacity: 0;
+    }
+    50%{
+      right: -50%;
+      opacity: 0;
+    }
+    75%{
+      right: -25%;
+      opacity: 0.7;
+    }
+    100%{
+      right: 0;
+      opacity: 1;
     }
   }
 }

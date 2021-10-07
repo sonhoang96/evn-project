@@ -1,42 +1,42 @@
 <template>
   <div class="overlay" v-if="isLoading">
-    <Loading />
+    <Loading/>
   </div>
   <div id="container" v-else>
     <title-content :customer="getCustomer.CUSTOMER_NAME"></title-content>
     <el-row class="row-content" :gutter="70">
+      <!--electric tariff-->
       <el-col :span="16" v-if="$route.name === 'Electricity Tracking'">
-        <index-electric-board
-            :indexElectric="getCustomer.DATA.INDEX_ELECTRIC"
-        ></index-electric-board>
+        <ElectricTariff :indexElectric="getCustomer.DATA.INDEX_ELECTRIC"/>
       </el-col>
+      <!--list notify-->
       <el-col :span="16" v-else>
-        <list-notify></list-notify>
+        <ListNotify/>
       </el-col>
+      <!--TempoElectricBill-->
       <el-col :span="8">
-        <tempo-elec-bill
+        <TempoElectricBill
             :money="getCustomer.AMOUNT_CALCULATE"
             :lastConsumption="getCustomer.LAST_CONSUMPTION"
             :dataChart="getCustomer.DATA.CHARRT"
-        ></tempo-elec-bill>
+        />
       </el-col>
     </el-row>
     <el-row class="row-chart" v-if="$route.name === 'Electricity Tracking'">
+      <!--ComparisonChart-->
       <el-col :span="24">
-        <comparison-chart
-            :dataChart="getCustomer.DATA.CHARRT"
-        ></comparison-chart>
+        <ComparisonChart :dataChart="getCustomer.DATA.CHARRT"/>
       </el-col>
     </el-row>
     <!--popup board-->
-    <popup></popup>
+    <Popup v-if="!message"/>
   </div>
 </template>
 
 <script>
 import TitleContent from "./TitleContent";
-import TempoElecBill from "./TemporaryElectricBill";
-import IndexElectricBoard from "./IndexElectrict";
+import TempoElectricBill from "./TemporaryElectricBill";
+import ElectricTariff from "./ElectricTariff";
 import ComparisonChart from "./ComparisonChart";
 import Popup from "../PopupNotify";
 import ListNotify from "./ListNotify";
@@ -49,14 +49,9 @@ export default {
     ListNotify,
     Popup,
     ComparisonChart,
-    IndexElectricBoard,
-    TempoElecBill,
+    ElectricTariff,
+    TempoElectricBill,
     TitleContent
-  },
-  data() {
-    return {
-      // DATA
-    }
   },
   computed: {
     getCustomer() {
@@ -64,10 +59,16 @@ export default {
     },
     isLoading() {
       return this.$store.state.indexElectric.isFetching
+    },
+    message() {
+      return this.$store.state.indexElectric.notification
     }
   },
+  created() {
+     this.$store.dispatch("getRequest")
+  },
   mounted() {
-    this.$store.dispatch("getRequest")
+    // setInterval(() => this.$store.dispatch("getRequest"), 60000)
   }
 }
 </script>
@@ -83,6 +84,7 @@ export default {
   left: 0;
   display: flex;
 }
+
 #container {
   margin: 125px 114px 0;
   text-align: left;

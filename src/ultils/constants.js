@@ -1,4 +1,5 @@
-export const baseURL = "http://localhost:3100";
+// export const baseURL = "http://localhost:8081";
+ export const baseURL = "http://10.8.64.64:8081";
 
 export const HTTP_METHOD = {
     GET: "GET",

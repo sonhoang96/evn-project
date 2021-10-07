@@ -14,8 +14,8 @@
   </div>
 </template>
 <script>
-import SearchComponent from "../SearchComponent";
-import SelectComponent from "../SelectComponent";
+import SearchComponent from "../Common/SearchComponent";
+import SelectComponent from "../Common/SelectComponent";
 import BoardNotify from './BoardNotify.vue';
 export default {
   name: "ListNotify",

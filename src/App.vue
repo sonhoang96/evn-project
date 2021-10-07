@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <nav-menu/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import NavMenu from "./components/NavMenu/NavMenu";
 
 export default {
   name: "App",
-  components: {NavMenu}
 }
 </script>
 <style lang="scss">
@@ -18,6 +15,10 @@ export default {
   font-family: Inter;
   src: local("Inter"),
   url("./assets/Inter-font/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+}
+
+body{
+  overflow: hidden;
 }
 
 #app {
@@ -31,7 +32,6 @@ export default {
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;

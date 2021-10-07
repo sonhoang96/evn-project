@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import ChartBoard from "../ChartBoard";
-import SelectComponent from "../SelectComponent";
+import ChartBoard from "../Common/ChartBoard";
+import SelectComponent from "../Common/SelectComponent";
 import {createListMonth} from "../../ultils/functions";
 
 export default {
