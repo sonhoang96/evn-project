@@ -46,7 +46,6 @@ router.beforeEach((to, from, next) => {
         localStorage.setItem("currentPath", to.path)
         return next()
     }
-    console.log(to, from)
 })
 
 export default router

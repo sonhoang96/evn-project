@@ -19,6 +19,8 @@ export default {
   height: 10px;
   width: 117px;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .cssload-dot {

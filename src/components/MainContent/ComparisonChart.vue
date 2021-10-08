@@ -4,7 +4,10 @@
       <span>Chi tiết lượng điện tiêu thụ</span>
       <select-component text="Theo tháng" :month="handleCreateListMonth"></select-component>
     </div>
-    <div class="chart-board">
+    <div v-if="isLoading" id="loading">
+      <Loading />
+    </div>
+    <div class="chart-board" v-else>
       <chart-board
           :xAxis=true
           :yAxis=true
@@ -21,12 +24,14 @@
 import ChartBoard from "../Common/ChartBoard";
 import SelectComponent from "../Common/SelectComponent";
 import {createListMonth} from "../../ultils/functions";
+import Loading from "../Loading";
 
 export default {
   name: "ComparisonChart",
-  components: {SelectComponent, ChartBoard},
+  components: {Loading, SelectComponent, ChartBoard},
   props: {
-    dataChart: Array
+    dataChart: Array,
+    isLoading: Boolean
   },
   computed: {
     handleCreateListMonth() {

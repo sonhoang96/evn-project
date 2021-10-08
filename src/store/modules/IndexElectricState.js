@@ -25,7 +25,7 @@ const mutations = {
     GET_INDEX_ELECTRICITY_FAILURE: (state, payload) => {
         state.isFetching = false;
         state.error = payload;
-    }
+    },
 }
 
 const actions = {

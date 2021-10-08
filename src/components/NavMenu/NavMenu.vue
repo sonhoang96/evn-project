@@ -41,7 +41,8 @@
         <!--Bell-->
         <div class="el-menu__tool-bell">
           <img src="../../assets/image-mockup/bell.png" alt="bell"/>
-          <img class="el-menu__tool-red-dot" src="../../assets/image-mockup/Notification-sign.png" alt="notification sign"/>
+          <img class="el-menu__tool-red-dot" src="../../assets/image-mockup/Notification-sign.png"
+               alt="notification sign"/>
         </div>
 
         <!--Account information-->
@@ -74,128 +75,44 @@ export default {
       DATA
     };
   },
-  methods:{
-    handleChangeIdxMenu(){
+  methods: {
+    handleChangeIdxMenu() {
       this.activeIndex = "1"
+    },
+    handleActiveTab(path) {
+      switch (path) {
+        case "/electricity-tracking":
+          this.activeIndex = "1"
+          break;
+        case "/feedback":
+          this.activeIndex = "2"
+          break;
+        case "/notification":
+          this.activeIndex = "3"
+          break;
+        default:
+          this.activeIndex = "1"
+      }
     }
   },
   computed: {
-    Customer(){
+    Customer() {
       const {CUSTOMER_NAME, CUSTOMER_ID} = this.$store.state.indexElectric.listData;
       return {CUSTOMER_NAME, CUSTOMER_ID}
+    },
+  },
+  watch: {
+    $route(to) {
+      this.handleActiveTab(to.path)
     }
   },
   mounted() {
     const path = localStorage.getItem("currentPath")
-    switch (path) {
-      case "/electricity-tracking":
-        this.activeIndex = "1"
-        break;
-      case "/feedback":
-        this.activeIndex = "2"
-        break;
-      case "/notification":
-        this.activeIndex = "3"
-        break;
-      default:
-        this.activeIndex = "1"
-    }
+    this.handleActiveTab(path)
   }
 }
 </script>
 
 <style lang="scss" scoped>
-div.nav-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2;
-
-  .el-menu {
-    font-size: 14px;
-    font-weight: 600;
-    height: 80px;
-    @media(max-width: 1024px) {
-      .el-menu-item {
-        padding: 0 15px;
-      }
-    }
-
-    .el-menu__logo {
-      float: left;
-      margin: 12px 102px 12px 29px;
-      cursor: pointer;
-      @media(max-width: 1200px) {
-        margin: 12px 50px 12px 29px;
-      }
-    }
-
-    li {
-      height: 100% !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 600;
-      font-size: 14px;
-
-      a {
-        text-decoration: none;
-      }
-    }
-
-    .el-menu__tool {
-      float: right;
-      height: 100%;
-      display: flex;
-      align-items: center;
-
-      .el-menu__tool-bell {
-        position: relative;
-
-        .el-menu__tool-red-dot {
-          position: absolute;
-          top: -5px;
-          right: -5px;
-        }
-      }
-
-      .el-menu__tool-account {
-        display: flex;
-        align-items: center;
-
-        #account-img {
-          width: 37px;
-          height: 37px;
-          border-radius: 50%;
-          object-fit: cover;
-          margin-right: 12px;
-
-          &:hover {
-            border: 1px solid lightblue;
-          }
-        }
-
-        #account-info {
-          text-align: left;
-
-          p {
-            margin: 0;
-            color: #171725;
-          }
-        }
-      }
-
-      div[class*="el-menu__tool-"] {
-        margin-right: 40px;
-      }
-
-      @media (max-width: 1200px) {
-        .el-menu__tool-list {
-          display: none;
-        }
-      }
-    }
-  }
-}
+@import "../../styles/NavMenu";
 </style>
