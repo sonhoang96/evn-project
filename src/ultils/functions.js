@@ -17,3 +17,11 @@ export const getMonth = () => {
 
     return curMonth + 1;
 }
+
+export const hourToMs = (time) => {
+    return Math.floor(time * 216000); //1 hour = 216000 millisecond
+}
+
+export const msToHour = (time) => {
+    return Number((time / 216000).toFixed(1)); //1 hour = 216000 millisecond
+}

@@ -5,8 +5,9 @@
       :fetch-suggestions="() => ``"
       placeholder="Tìm kiếm">
     <i
-        class="el-icon-edit el-input__icon"
-        slot="suffix">
+        slot="prefix"
+        class="el-input__icon el-icon-search"
+    >
     </i>
     <template slot-scope="{}">
       <div class="value">{{ "" }}</div>
@@ -18,17 +19,17 @@
 <script>
 export default {
   name: "SearchComponent",
-  data(){
-    return{
+  data() {
+    return {
       textSearch: ''
     }
   },
   computed: {
-    search:{
-      get () {
+    search: {
+      get() {
         return this.textSearch
       },
-      set (value) {
+      set(value) {
         this.textSearch = value
       }
     }

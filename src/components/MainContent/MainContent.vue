@@ -1,6 +1,10 @@
 <template>
   <div id="container">
-    <title-content :customer="getCustomer.CUSTOMER_NAME"></title-content>
+    <!--title header-->
+    <title-content
+        :customer="getCustomer.CUSTOMER_NAME"
+        :dialogFormVisible="dialogFormVisible"
+    ></title-content>
     <el-row class="row-content" :gutter="70">
       <!--electric tariff-->
       <el-col
@@ -36,7 +40,12 @@
       </el-col>
     </el-row>
     <!--popup board-->
-    <Popup v-if="!message"/>
+    <Popup v-if="notificationStatus"/>
+    <!--Modal to set up timeout to call request data-->
+    <TimeOutModal
+        :dialogFormVisible="dialogFormVisible"
+        :status="modalStatus"
+    />
   </div>
 </template>
 
@@ -47,10 +56,21 @@ import ElectricTariff from "./ElectricTariff";
 import ComparisonChart from "./ComparisonChart";
 import Popup from "../PopupNotify";
 import ListNotify from "./ListNotify";
+import TimeOutModal from "../TimeOutModal";
+import {mapState} from "vuex";
+
+let callData;
+let callNotify;
 
 export default {
   name: 'MainContent',
+  data() {
+    return {
+      modalStatus: false
+    }
+  },
   components: {
+    TimeOutModal,
     ListNotify,
     Popup,
     ComparisonChart,
@@ -58,23 +78,59 @@ export default {
     TempoElectricBill,
     TitleContent
   },
-  computed: {
-    getCustomer() {
-        return this.$store.state.indexElectric.listData
-    },
-    message() {
-      return this.$store.state.indexElectric.notification
-    },
-    isLoading(){
-      return this.$store.state.indexElectric.isFetching
+  methods: {
+    dialogFormVisible() {
+      return this.modalStatus = !this.modalStatus;
     }
   },
-  created() {
-    this.$store.dispatch("getRequest")
-  },
-  // mounted() {
-  //   this.$store.dispatch("getRequest")
+  computed: mapState({
+    getCustomer: state => state.indexElectric.listData,
+    notificationStatus: state => state.indexElectric.notification.status,
+    isLoading: state => state.indexElectric.isFetching,
+    // timeCallRequest: state => state.indexElectric.timeSetting
+  })
+
+  //     {
+  //   getCustomer() {
+  //     return this.$store.state.indexElectric.listData
+  //   },
+  //   notificationStatus() {
+  //     return this.$store.state.indexElectric.notification.status
+  //   },
+  //   isLoading() {
+  //     return this.$store.state.indexElectric.isFetching
+  //   },
+  //   timeCallRequest(){
+  //     return {
+  //       this.
+  //     }
+  //   }
   // }
+  ,
+  beforeMount() {
+    const store = this.$store;
+    const {message} = store.state.indexElectric.notification;
+    //action turn notify
+    if (message !== "CLOSE_NOTIFICATION") {
+      store.dispatch("getNotifyRequest")
+    }
+    store.dispatch("getIdxElectricRequest")
+  },
+  mounted() {
+    const store = this.$store;
+    const timeCallData = localStorage.getItem("timeCallData");
+    const timeCallNotify = localStorage.getItem("timeCallNotify");
+
+    //Setup time to update data and call notification
+    callData = setInterval(() => store.dispatch("getNotifyRequest"), timeCallData);
+    callNotify = setInterval(() => store.dispatch("getIdxElectricRequest"), timeCallNotify);
+  },
+  beforeDestroy() {
+    // remove setInterval if change the site
+    // if do not remove, setInterval will be conflicted
+    clearInterval(callData)
+    clearInterval(callNotify)
+  }
 }
 </script>
 
