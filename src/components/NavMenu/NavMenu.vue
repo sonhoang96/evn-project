@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import DATA from "../../../evn.json";
 
 export default {
   name: 'NavMenu',
@@ -72,7 +71,6 @@ export default {
     return {
       activeIndex: '1',
       activeIndex2: '1',
-      DATA
     };
   },
   methods: {
