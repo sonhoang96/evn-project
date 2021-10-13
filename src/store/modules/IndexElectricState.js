@@ -25,8 +25,8 @@ const state = {
         data: []
     },
     timeSetting: {
-        callData: 1,
-        callNotify: 1
+        callData: 108000, // equal 30 minutes
+        callNotify: 108000
     }
 }
 
@@ -63,7 +63,6 @@ const mutations = {
         state.timeSetting.callData = payload.convertTimeCallData;
         state.timeSetting.callNotify = payload.convertTimeCallNotify;
     }
-
 }
 
 const actions = {

@@ -25,7 +25,7 @@
         <TempoElectricBill
             :money="getCustomer['AMOUNT_CALCULATE']"
             :lastConsumption="getCustomer['LAST_CONSUMPTION']"
-            :dataChart="getCustomer.DATA['CHARRT']"
+            :dataChart="getCustomer.DATA['CHARRT'] ? getCustomer.DATA['CHARRT'] : []"
             :is-loading="isLoading"
         />
       </el-col>
@@ -57,10 +57,14 @@ import ComparisonChart from "./ComparisonChart";
 import Popup from "../PopupNotify";
 import ListNotify from "./ListNotify";
 import TimeOutModal from "../TimeOutModal";
+import {getDataToLocalStorage, setDataToLocalStorage, clearDataOfLocalStorage} from "../../ultils/functions"
 import {mapState} from "vuex";
 
-let callData;
-let callNotify;
+let timeCallData;
+let timeCallNotify;
+
+let notifyTime = 'timeCallNotify';
+let dataTime = 'timeCallData';
 
 export default {
   name: 'MainContent',
@@ -87,26 +91,8 @@ export default {
     getCustomer: state => state.indexElectric.listData,
     notificationStatus: state => state.indexElectric.notification.status,
     isLoading: state => state.indexElectric.isFetching,
-    // timeCallRequest: state => state.indexElectric.timeSetting
-  })
-
-  //     {
-  //   getCustomer() {
-  //     return this.$store.state.indexElectric.listData
-  //   },
-  //   notificationStatus() {
-  //     return this.$store.state.indexElectric.notification.status
-  //   },
-  //   isLoading() {
-  //     return this.$store.state.indexElectric.isFetching
-  //   },
-  //   timeCallRequest(){
-  //     return {
-  //       this.
-  //     }
-  //   }
-  // }
-  ,
+    timeCallRequest: state => state.indexElectric.timeSetting,
+  }),
   beforeMount() {
     const store = this.$store;
     const {message} = store.state.indexElectric.notification;
@@ -118,18 +104,48 @@ export default {
   },
   mounted() {
     const store = this.$store;
-    const timeCallData = localStorage.getItem("timeCallData");
-    const timeCallNotify = localStorage.getItem("timeCallNotify");
+    const {callData, callNotify} = this.timeCallRequest;
+    const findData = localStorage.getItem(`${notifyTime}`);
 
-    //Setup time to update data and call notification
-    callData = setInterval(() => store.dispatch("getNotifyRequest"), timeCallData);
-    callNotify = setInterval(() => store.dispatch("getIdxElectricRequest"), timeCallNotify);
+    if (!findData) {
+      //Set default value to create cycle for calling request via value in reducer
+      setDataToLocalStorage([dataTime, notifyTime], [callData, callNotify])
+      timeCallData = setInterval(() => store.dispatch("getNotifyRequest"), callData);
+      timeCallNotify = setInterval(() => store.dispatch("getIdxElectricRequest"), callNotify);
+      return;
+    } else {
+      console.log(1)
+      const getLocal = getDataToLocalStorage(notifyTime, dataTime)
+      timeCallData = setInterval(() => store.dispatch("getNotifyRequest"), getLocal[`${notifyTime}`]);
+      timeCallNotify = setInterval(() => store.dispatch("getIdxElectricRequest"), getLocal[`${dataTime}`]);
+
+      return;
+    }
   },
   beforeDestroy() {
-    // remove setInterval if change the site
-    // if do not remove, setInterval will be conflicted
-    clearInterval(callData)
-    clearInterval(callNotify)
+    /*
+      remove setInterval if change the site
+      if do not remove, setInterval will be conflicted
+    */
+    clearDataOfLocalStorage(timeCallData, timeCallNotify)
+  },
+  updated() {
+    const store = this.$store;
+    const {callData, callNotify} = this.timeCallRequest;
+    const compareCallTimeData = callData !== getDataToLocalStorage(dataTime)[0];
+    const compareCallTimeNotify = callNotify !== getDataToLocalStorage(notifyTime)[0];
+    console.log(3)
+    if (compareCallTimeData || compareCallTimeNotify) {
+      //Step 1 clear storage
+      clearDataOfLocalStorage(timeCallData, timeCallData);
+      //Step 2 re setup localstorage, add new time to call request
+      setDataToLocalStorage([dataTime, notifyTime], [callData, callNotify])
+      //Step 3 re setup cycle to call request
+      timeCallData = setInterval(() => store.dispatch("getNotifyRequest"), callData);
+      timeCallNotify = setInterval(() => store.dispatch("getIdxElectricRequest"), callNotify);
+      return;
+    }
+    return;
   }
 }
 </script>

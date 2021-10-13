@@ -1,5 +1,11 @@
 <template>
-  <el-dialog id="dialog" title="Hiệu chỉnh thời gian" :visible.sync="status">
+  <el-dialog
+      id="dialog"
+      title="Hiệu chỉnh thời gian"
+      :visible.sync="status"
+      :before-close="handleUpdateTime"
+      :show-close="false"
+  >
     <el-form :model="form">
       <el-form-item label="Cập nhật dữ liệu:" :label-width="formLabelWidth">
         <el-input-number
@@ -23,7 +29,11 @@
 </template>
 
 <script>
-import {hourToMs, msToHour} from "../ultils/functions"
+import {getDataToLocalStorage, hourToMs, msToHour} from "../ultils/functions"
+
+let notifyTime = 'timeCallNotify';
+let dataTime = 'timeCallData';
+
 export default {
   name: "TimeOutModal",
   props: ['dialogFormVisible', 'status'],
@@ -45,29 +55,25 @@ export default {
       let convertTimeCallData = hourToMs(timeCallData);
       let convertTimeCallNotify = hourToMs(timeCallNotify);
 
-      localStorage.setItem("timeCallData", convertTimeCallData);
-      localStorage.setItem("timeCallNotify", convertTimeCallNotify);
-
       //save time to store
       this.$store.dispatch("updateTimeData", {convertTimeCallData, convertTimeCallNotify})
 
-      return this.dialogFormVisible()
+      return this.dialogFormVisible();
     },
     //Roll back data in localStorage
     handleUpdateTime(lifecycle){
-      let getNotifyTime = Number(localStorage.getItem('timeCallNotify'));
-      let getDataTime = Number(localStorage.getItem('timeCallData'));
+      let getLocal = getDataToLocalStorage(dataTime, notifyTime);
 
       //Convert millisecond to hour
-      this.form.timeCallData = msToHour(getDataTime);
-      this.form.timeCallNotify = msToHour(getNotifyTime);
+      this.form.timeCallData = msToHour(getLocal[`${dataTime}`]);
+      this.form.timeCallNotify = msToHour(getLocal[`${notifyTime}`]);
 
       //Case update when the first time open this modal
       if(lifecycle === "mounted"){
         return;
       }
       return this.dialogFormVisible()
-    }
+    },
   },
   mounted() {
     this.handleUpdateTime("mounted")
