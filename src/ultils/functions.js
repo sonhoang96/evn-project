@@ -32,8 +32,15 @@ export const msToHour = (time) => {
 }
 
 //Set data to localStorage
-export const setDataToLocalStorage = ([...arg1], [...arg2]) => {
-    console.log(arg1, arg2, 'xxxxxxxxxxx')
+export const setDataToLocalStorage = ([...arg1], [...arg2], flag) => {
+    //flag is thing to determine exist data in localStorage
+    if(flag) {
+        console.log(flag)
+        window.localStorage.setItem('flag', flag)
+    }
+
+    if(arg1[0] === 0 && arg2[0] === 0) return;
+    console.log(22323)
     if (arg1.length === arg2.length) {
         for (let i = 0; i < arg1.length; i++) {
             localStorage.setItem(arg1[i], arg2[i]);
@@ -53,6 +60,6 @@ export const getDataToLocalStorage = (...name) => {
 }
 
 //Clear localStorage
-export const clearDataOfLocalStorage = (...func) => {
+export const clearCycles = (...func) => {
     return func.map(item => clearInterval(item));
 }

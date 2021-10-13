@@ -71,7 +71,6 @@ const actions = {
         const getAPi = await callApi({
                 method: "GET",
                 url: '/customer',
-                body: ''
             }
         );
         if (getAPi.error) {
