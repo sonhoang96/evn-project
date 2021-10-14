@@ -80,5 +80,5 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "../../styles/ElectriTariff";
+@import "../../styles/ElectricTariff";
 </style>
