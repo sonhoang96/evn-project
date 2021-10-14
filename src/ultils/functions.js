@@ -21,26 +21,23 @@ export const getMonth = () => {
     return curMonth + 1;
 }
 
-//Format hour to milliseconds - example result: 1h -> 216000
+//Format hour to milliseconds - example result: 1h -> 3600000 milliseconds
 export const hourToMs = (time) => {
-    return Math.floor(time * 216000); //1 hour = 216000 millisecond
+    return Math.floor(time * 3600000); //1 hour = 3600000 millisecond
 }
 
 //Format milliseconds to hour
 export const msToHour = (time) => {
-    return Number((time / 216000).toFixed(1)); //1 hour = 216000 millisecond
+    return Number((time / 3600000).toFixed(1)); //1 hour = 3600000 millisecond
 }
 
 //Set data to localStorage
 export const setDataToLocalStorage = ([...arg1], [...arg2], flag) => {
     //flag is thing to determine exist data in localStorage
-    if(flag) {
-        console.log(flag)
-        window.localStorage.setItem('flag', flag)
-    }
+    if(flag) window.localStorage.setItem('flag', flag)
 
     if(arg1[0] === 0 && arg2[0] === 0) return;
-    console.log(22323)
+
     if (arg1.length === arg2.length) {
         for (let i = 0; i < arg1.length; i++) {
             localStorage.setItem(arg1[i], arg2[i]);

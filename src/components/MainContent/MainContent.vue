@@ -2,30 +2,28 @@
   <div id="container">
     <!--title header-->
     <title-content
-      :customer="getCustomer.CUSTOMER_NAME"
-      :dialogFormVisible="dialogFormVisible"
+        :customer="getCustomer.CUSTOMER_NAME"
+        :dialogFormVisible="dialogFormVisible"
     ></title-content>
     <el-row class="row-content" :gutter="70">
       <!--electric tariff-->
       <el-col :span="16" v-if="$route.name === 'Electricity Tracking'">
         <ElectricTariff
-          :indexElectric="getCustomer.DATA['INDEX_ELECTRIC']"
-          :isLoading="isLoading"
+            :indexElectric="getCustomer.DATA['INDEX_ELECTRIC']"
+            :isLoading="isLoading"
         />
       </el-col>
       <!--list notify-->
       <el-col :span="16" v-else>
-        <ListNotify />
+        <ListNotify/>
       </el-col>
       <!--TempoElectricBill-->
       <el-col :span="8">
         <TempoElectricBill
-          :money="getCustomer['AMOUNT_CALCULATE']"
-          :lastConsumption="getCustomer['LAST_CONSUMPTION']"
-          :dataChart="
-            getCustomer.DATA['CHARRT'] ? getCustomer.DATA['CHARRT'] : []
-          "
-          :is-loading="isLoading"
+            :money="getCustomer['AMOUNT_CALCULATE']"
+            :lastConsumption="getCustomer['LAST_CONSUMPTION']"
+            :dataChart="getCustomer.DATA['CHARRT']"
+            :is-loading="isLoading"
         />
       </el-col>
     </el-row>
@@ -33,17 +31,17 @@
       <!--ComparisonChart-->
       <el-col :span="24">
         <ComparisonChart
-          :dataChart="getCustomer.DATA['CHARRT']"
-          :is-loading="isLoading"
+            :dataChart="getCustomer.DATA['CHARRT']"
+            :is-loading="isLoading"
         />
       </el-col>
     </el-row>
     <!--popup board-->
-    <Popup v-if="notificationStatus" />
+    <Popup v-if="notificationStatus"/>
     <!--Modal to set up timeout to call request data-->
     <TimeOutModal
-      :dialogFormVisible="dialogFormVisible"
-      :status="modalStatus"
+        :dialogFormVisible="dialogFormVisible"
+        :status="modalStatus"
     />
   </div>
 </template>
@@ -61,7 +59,7 @@ import {
   setDataToLocalStorage,
   clearCycles,
 } from "../../ultils/functions";
-import { mapState } from "vuex";
+import {mapState} from "vuex";
 
 let timeCallData;
 let timeCallNotify;
@@ -98,7 +96,7 @@ export default {
   }),
   beforeMount() {
     const store = this.$store;
-    const { message } = store.state.indexElectric.notification;
+    const {message} = store.state.indexElectric.notification;
     //action turn notify
     if (message !== "CLOSE_NOTIFICATION") {
       store.dispatch("getNotifyRequest");
@@ -107,36 +105,30 @@ export default {
   },
   mounted() {
     const store = this.$store;
-    const { callData, callNotify } = this.timeCallRequest;
+    const {callData, callNotify} = this.timeCallRequest;
     const findData = localStorage.getItem(`${notifyTime}`);
 
     if (!findData) {
       //Set default value to create cycle for calling request via value in reducer
       console.log(2);
       setDataToLocalStorage(
-        [dataTime, notifyTime],
-        [callData, callNotify],
-        "initial"
+    [dataTime, notifyTime],
+    [callData, callNotify],
+      "initial"
       );
-      timeCallData = setInterval(
-        () => store.dispatch("getNotifyRequest"),
-        callData
-      );
-      timeCallNotify = setInterval(
-        () => store.dispatch("getIdxElectricRequest"),
-        callNotify
-      );
+      timeCallData = setInterval(() => store.dispatch("getNotifyRequest"), callData);
+      timeCallNotify = setInterval(() => store.dispatch("getIdxElectricRequest"), callNotify);
       return;
     } else {
       console.log(1);
       const getLocal = getDataToLocalStorage(notifyTime, dataTime);
       timeCallData = setInterval(
-        () => store.dispatch("getNotifyRequest"),
-        getLocal[`${notifyTime}`]
+          () => store.dispatch("getNotifyRequest"),
+          getLocal[`${notifyTime}`]
       );
       timeCallNotify = setInterval(
-        () => store.dispatch("getIdxElectricRequest"),
-        getLocal[`${dataTime}`]
+          () => store.dispatch("getIdxElectricRequest"),
+          getLocal[`${dataTime}`]
       );
 
       return;
@@ -149,34 +141,49 @@ export default {
     */
     clearCycles(timeCallData, timeCallNotify);
   },
+  beforeUpdate() {
+    const getLocal = getDataToLocalStorage(notifyTime, dataTime);
+    const {callData, callNotify} = this.timeCallRequest;
+    const compareTimeData = callData !== getLocal.timeCallData;
+    const compareTimeNotify = callNotify !== getLocal.timeCallNotify;
+    if (compareTimeData) {
+      clearCycles(timeCallData)
+      timeCallData = null;
+      setDataToLocalStorage(
+          [dataTime],
+          [callData],
+          "updateTimeData"
+      );
+    }
+    if (compareTimeNotify) {
+      clearCycles(timeCallNotify)
+      timeCallNotify = null;
+      setDataToLocalStorage(
+          [notifyTime],
+          [callNotify],
+          "updateTimeNotify"
+      );
+    }
+  },
   updated() {
     const store = this.$store;
-    const { callData, callNotify } = this.timeCallRequest;
-    const compareCallTimeData = callData !== getDataToLocalStorage(dataTime)[0];
-    const compareCallTimeNotify =
-      callNotify !== getDataToLocalStorage(notifyTime)[0];
+    const getLocal = getDataToLocalStorage(notifyTime, dataTime)
     const flag = localStorage.getItem("flag");
-    console.log(3, flag);
-    if (compareCallTimeData || compareCallTimeNotify) {
-      //Step 1 clear storage
-      clearCycles(timeCallData, timeCallData);
-      //Step 2 re setup localstorage, add new time to call request
-      if (flag === "change") {
-        setDataToLocalStorage([dataTime, notifyTime], [callData, callNotify]);
-      }
-      //Step 3 re setup cycle to call request
+    console.log(flag)
+    if (flag === 'updateTimeData') {
       timeCallData = setInterval(
-        () => store.dispatch("getNotifyRequest"),
-        callData
+          () => store.dispatch("getNotifyRequest"),
+          getLocal[`${notifyTime}`]
       );
-      timeCallNotify = setInterval(
-        () => store.dispatch("getIdxElectricRequest"),
-        callNotify
-      );
-      return;
     }
-    return;
-  },
+    if (flag === 'updateTimeNotify') {
+      timeCallNotify = setInterval(
+          () => store.dispatch("getIdxElectricRequest"),
+          getLocal[`${dataTime}`]
+      );
+    }
+    return setDataToLocalStorage([0], [0], 'change')
+  }
 };
 </script>
 

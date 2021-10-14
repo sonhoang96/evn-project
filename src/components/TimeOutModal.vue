@@ -1,47 +1,47 @@
 <template>
   <el-dialog
-    id="dialog"
-    title="Hiệu chỉnh thời gian"
-    :visible.sync="status"
-    :before-close="handleUpdateTime"
-    :show-close="false"
+      id="dialog"
+      title="Hiệu chỉnh thời gian"
+      :visible.sync="status"
+      :before-close="handleUpdateTime"
+      :show-close="false"
   >
     <el-form :model="form">
       <el-form-item label="Cập nhật dữ liệu:" :label-width="formLabelWidth">
         <el-input-number
-          v-model="form.timeCallData"
-          controls-position="right"
-          :min="0"
-          :precision="1"
-          :step="0.1"
+            v-model="form.timeCallData"
+            controls-position="right"
+            :min="0"
+            :precision="1"
+            :step="0.1"
         ></el-input-number>
         <el-input value="Giờ" :disabled="true"></el-input>
       </el-form-item>
       <el-form-item label="Cập nhật thông báo:" :label-width="formLabelWidth">
         <el-input-number
-          v-model="form.timeCallNotify"
-          controls-position="right"
-          :min="0"
-          :precision="1"
-          :step="0.1"
+            v-model="form.timeCallNotify"
+            controls-position="right"
+            :min="0.1"
+            :precision="1"
+            :step="0.1"
         ></el-input-number>
         <el-input value="Giờ" :disabled="true"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button
-        type="primary"
-        @click="handleSaveTime"
-        icon="el-icon-check"
-        plain
-        >Lưu</el-button
+          type="primary"
+          @click="handleSaveTime"
+          icon="el-icon-check"
+          plain
+      >Lưu</el-button
       >
       <el-button
-        type="info"
-        @click="handleUpdateTime"
-        icon="el-icon-close"
-        plain
-        >Hủy bỏ</el-button
+          type="info"
+          @click="handleUpdateTime"
+          icon="el-icon-close"
+          plain
+      >Hủy bỏ</el-button
       >
     </span>
   </el-dialog>
@@ -73,7 +73,7 @@ export default {
   methods: {
     //save time selection of user to localStorage
     handleSaveTime() {
-      const { timeCallNotify, timeCallData } = this.form;
+      const {timeCallNotify, timeCallData} = this.form;
 
       //convert hour to millisecond
       let convertTimeCallData = hourToMs(timeCallData);
@@ -106,7 +106,7 @@ export default {
   mounted() {
     this.handleUpdateTime("mounted");
   },
-  created(){
+  created() {
     window.addEventListener('beforeunload', () => setDataToLocalStorage([0], [0], 'initial'))
   }
 };
@@ -117,8 +117,10 @@ export default {
   .el-dialog {
     margin-top: 25vh !important;
     width: 30%;
+
     .el-form-item__content {
       display: flex;
+
       .is-disabled {
         width: 60px !important;
         margin-left: 10px;

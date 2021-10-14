@@ -25,8 +25,8 @@ const state = {
         data: []
     },
     timeSetting: {
-        callData: 108000, // equal 30 minutes
-        callNotify: 108000
+        callData: 1800000, // equal 30 minutes
+        callNotify: 1800000
     }
 }
 
