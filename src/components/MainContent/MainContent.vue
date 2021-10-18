@@ -90,7 +90,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("getRequest")
+    this.$store.dispatch("getIdxElectricRequest")
   },
   updated() {
     if( !this.handleCheckPath() ){
