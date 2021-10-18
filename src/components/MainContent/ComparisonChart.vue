@@ -23,7 +23,7 @@
 <script>
 import ChartBoard from "../Common/ChartBoard";
 import SelectComponent from "../Common/SelectComponent";
-import {createListMonth} from "../../ultils/functions";
+import {createArray} from "../../ultils/functions";
 import Loading from "../Loading";
 
 export default {
@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     handleCreateListMonth() {
-      return createListMonth(12)
+      return createArray("Tháng",12)
     },
     handleAddAtrToData() {
       return [

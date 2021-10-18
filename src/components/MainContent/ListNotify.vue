@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="20">
       <el-col :span="12" id="select-notify">
-        <select-component text="Thông báo gần đây"> </select-component>
+        <select-component text="Thông báo gần đây" :list="options"></select-component>
       </el-col>
       <el-col :span="12" id="search-notify">
         <search-component></search-component>
@@ -17,33 +17,14 @@
 import SearchComponent from "../Common/SearchComponent";
 import SelectComponent from "../Common/SelectComponent";
 import BoardNotify from './BoardNotify.vue';
+import {createArray} from "../../ultils/functions";
+
 export default {
   name: "ListNotify",
-  components: { SelectComponent, SearchComponent, BoardNotify },
+  components: {SelectComponent, SearchComponent, BoardNotify},
   data() {
     return {
-      options: [
-        {
-          value: "Thông báo 1",
-          label: "Thông báo 1",
-        },
-        {
-          value: "Thông báo 2",
-          label: "Thông báo 2",
-        },
-        {
-          value: "Thông báo 3",
-          label: "Thông báo 3",
-        },
-        {
-          value: "Thông báo 4",
-          label: "Thông báo 4",
-        },
-        {
-          value: "Thông báo 5",
-          label: "Thông báo 5",
-        },
-      ],
+      options: createArray("Thông báo", 7)
     };
   },
 };

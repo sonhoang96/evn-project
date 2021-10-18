@@ -1,7 +1,7 @@
 <template>
-  <el-select v-model="selectOption" :placeholder="text">
+  <el-select v-model="notify" :placeholder="text">
     <el-option
-        v-for="item in month"
+        v-for="item in list"
         :key="item"
         :label="item"
         :value="item">
@@ -29,8 +29,12 @@ export default {
   },
   props: {
     text: String,
-    month: Array
+    list: Array
   },
+  mounted() {
+    console.log(this.list)
+  }
 }
 </script>
-<style></style>
+<style>
+</style>

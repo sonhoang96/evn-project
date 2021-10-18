@@ -3,11 +3,9 @@
       popper-class="my-autocomplete"
       v-model="search"
       :fetch-suggestions="() => ``"
-      placeholder="Tìm kiếm">
-    <i
-        class="el-icon-edit el-input__icon"
-        slot="suffix">
-    </i>
+      placeholder="Tìm kiếm"
+      prefix-icon="el-icon-search"
+  >
     <template slot-scope="{}">
       <div class="value">{{ "" }}</div>
       <span class="link">{{ "" }}</span>
@@ -18,17 +16,17 @@
 <script>
 export default {
   name: "SearchComponent",
-  data(){
-    return{
+  data() {
+    return {
       textSearch: ''
     }
   },
   computed: {
-    search:{
-      get () {
+    search: {
+      get() {
         return this.textSearch
       },
-      set (value) {
+      set(value) {
         this.textSearch = value
       }
     }
@@ -50,6 +48,7 @@ export default {
       font-size: 12px;
       color: #b4b4b4;
     }
+
   }
 }
 </style>

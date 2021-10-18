@@ -32,9 +32,9 @@
 <script>
 import ChartBoard from "../Common/ChartBoard";
 import {
-  createListMonth,
   getMonth,
-  formatPrice
+  formatPrice,
+  createArray
 } from "../../ultils/functions";
 import Loading from "../Loading";
 
@@ -49,7 +49,7 @@ export default {
   },
   computed:{
     handleCreateListMonth(){
-      return createListMonth(7)
+      return createArray('',7)
     },
     handleFormatPrice(){
       return formatPrice(this.money)

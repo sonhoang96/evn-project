@@ -5,22 +5,27 @@
     border-radius: 16px;
     background: #e4e4e44d;
     padding: 18px 0px 18px 23px;
+
     &::placeholder {
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       color: #a9a9ab;
     }
+
     &:focus {
       border: 1px solid #e4e4e4;
       box-shadow: 0px 0px 5px #f5f5f5;
     }
   }
+
   #select-notify {
     .el-select {
       width: 100%;
+
       .el-input__suffix {
         .el-input__suffix-inner {
           margin-right: 10px;
+
           i {
             font-size: 18px;
             font-weight: 600;
@@ -30,9 +35,26 @@
       }
     }
   }
+
   #search-notify {
     .el-autocomplete {
       width: 100%;
+
+      .el-input__prefix {
+        color: #1b1d21;
+        left: 14px;
+        top: 3px;
+        font-size: 18px;
+        font-weight: 700;
+        i{
+          font-weight: 700;
+        }
+      }
+      .el-input--prefix{
+        .el-input__inner{
+          padding-left: 45px;
+        }
+      }
     }
   }
 }

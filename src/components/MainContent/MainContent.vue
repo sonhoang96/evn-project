@@ -53,6 +53,8 @@ import ComparisonChart from "./ComparisonChart";
 import Popup from "../PopupNotify";
 import ListNotify from "./ListNotify";
 
+let timeToChangeView;
+
 export default {
   name: 'MainContent',
   components: {
@@ -90,11 +92,15 @@ export default {
   created() {
     this.$store.dispatch("getRequest")
   },
-  mounted() {
-    setInterval(() => {
-      return this.handleChangeView()
-    }, 45000)
-    console.log(this.$route)
+  updated() {
+    if( !this.handleCheckPath() ){
+      clearInterval(timeToChangeView)
+    }else{
+      clearInterval(timeToChangeView)
+      timeToChangeView = setInterval(() => {
+        return this.handleChangeView()
+      }, 45000)
+    }
   }
 }
 </script>

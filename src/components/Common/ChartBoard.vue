@@ -13,9 +13,9 @@ export default {
             backgroundColor: item.color,
             barPercentage: 0.5,
             barThickness: 30,
-            borderWidth: 2,
-            borderRadius: 12,
-            borderSkipped: false,
+            borderWidth: 0,
+            borderRadius: 15,
+            borderSkipped: true,
             data: item.DATA || [],
           }
         })
@@ -26,9 +26,9 @@ export default {
           backgroundColor: this.color,
           barPercentage: 0.5,
           barThickness: 30,
-          borderWidth: 2,
-          borderRadius: 12,
-          borderSkipped: false,
+          borderWidth: 0,
+          borderRadius: 15,
+          borderSkipped: true,
           data: this.dataChart[0].DATA || [],
         }]
 

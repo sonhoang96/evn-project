@@ -1,7 +1,10 @@
-export const createListMonth = (amount) => {
+export const createArray = (content, amount) => {
     let listData = [];
     for (let i = 1; i <= amount; i++) {
-        listData.push(`Tháng ${i}`)
+        let newData = `${content} ${i}`;
+        //remove space from begin and end of string
+        let trimNewData = newData.trim();
+        listData.push(trimNewData);
     }
     return listData;
 }
