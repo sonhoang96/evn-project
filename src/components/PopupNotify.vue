@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     closePopUp() {
-
+      this.$store.dispatch("turnOffNotify");
     }
   }
 }

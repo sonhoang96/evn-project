@@ -40,12 +40,5 @@ const router = new VueRouter({
     scrollBehavior: () => ({y: 0}),
     routes
 })
-router.beforeEach((to, from, next) => {
-    // ...
-    if(to.path){
-        localStorage.setItem("currentPath", to.path)
-        return next()
-    }
-})
 
 export default router

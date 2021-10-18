@@ -105,7 +105,7 @@ export default {
     }
   },
   mounted() {
-    const path = localStorage.getItem("currentPath")
+    const path = this.$router.history.current.path;
     this.handleActiveTab(path)
   }
 }
