@@ -190,3 +190,12 @@ export default {
 <style lang="scss" scoped>
 @import "../../styles/MainContent";
 </style>
+
+function a(x) {
+  return function() {
+    setInterval(() => {}, x)
+  }
+}
+udpate() {
+this.timeCallData = a(timeData)
+}
