@@ -11,13 +11,9 @@ export default {
 }
 </script>
 <style lang="scss">
-@font-face {
-  font-family: Inter;
-  src: local("Inter"),
-  url("./assets/Inter-font/Inter-VariableFont_slnt,wght.ttf") format("truetype");
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -32,6 +28,7 @@ body{
 
 #nav {
   padding: 30px;
+
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -39,6 +36,17 @@ body{
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+
+//prefix dropdown
+.el-select-dropdown {
+  .el-select-dropdown__item.selected{
+    color: #164399;
+    font-weight: 600;
+  }
+  ul{
+    font-family: Inter;
   }
 }
 </style>

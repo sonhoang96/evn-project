@@ -49,7 +49,7 @@ export default {
   },
   computed:{
     handleCreateListMonth(){
-      return createArray('',7)
+      return createArray('Tháng',7)
     },
     handleFormatPrice(){
       return formatPrice(this.money)

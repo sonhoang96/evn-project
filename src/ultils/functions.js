@@ -35,11 +35,7 @@ export const msToHour = (time) => {
 }
 
 //Set data to localStorage
-export const setDataToLocalStorage = ([...arg1], [...arg2], flag) => {
-    //flag is thing to determine exist data in localStorage
-    if(flag) window.localStorage.setItem('flag', flag)
-
-    if(arg1[0] === 0 && arg2[0] === 0) return;
+export const setDataToLocalStorage = ([...arg1], [...arg2]) => {
 
     if (arg1.length === arg2.length) {
         for (let i = 0; i < arg1.length; i++) {
@@ -51,7 +47,7 @@ export const setDataToLocalStorage = ([...arg1], [...arg2], flag) => {
 }
 
 //Get data to localStorage
-export const getDataToLocalStorage = (...name) => {
+export const getDataFromLocalStorage = (...name) => {
     const arr = {};
     name.map(item =>
         arr[`${item}`] = Number(localStorage.getItem(item))

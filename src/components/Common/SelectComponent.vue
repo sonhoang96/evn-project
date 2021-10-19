@@ -13,7 +13,7 @@ export default {
   name: "SelectComponent",
   data() {
     return {
-      notify: 'Thông báo gần đây'
+      notify: this.text
     }
   },
   computed: {
@@ -22,7 +22,6 @@ export default {
         return this.notify
       },
       set(value) {
-        console.log(value)
         return value
       }
     }
@@ -31,9 +30,6 @@ export default {
     text: String,
     list: Array
   },
-  mounted() {
-    console.log(this.list)
-  }
 }
 </script>
 <style>

@@ -1,6 +1,10 @@
 <template>
   <div id="container">
-    <title-content :customer="getCustomer.CUSTOMER_NAME"></title-content>
+    <title-content
+        :customer="getCustomer.CUSTOMER_NAME"
+        :dialogFormVisible="dialogFormVisible"
+    >
+    </title-content>
     <el-row class="row-content" :gutter="70" v-if="changeView">
       <!--electric tariff-->
       <el-col :span="16" v-if="handleCheckPath()">
@@ -19,7 +23,7 @@
             :money="getCustomer['AMOUNT_CALCULATE']"
             :lastConsumption="getCustomer['LAST_CONSUMPTION']"
             :dataChart="getCustomer.DATA['CHARRT']"
-            :is-loading="isLoading"
+            :isLoading="isLoading"
         />
       </el-col>
     </el-row>
@@ -28,10 +32,11 @@
       <el-col :span="24">
         <ComparisonChart
             :dataChart="getCustomer.DATA['CHARRT']"
-            :is-loading="isLoading"
+            :isLoading="isLoading"
         />
       </el-col>
     </el-row>
+    <!--2 buttons-->
     <el-row class="row-button" :gutter="20" v-if="handleCheckPath()">
       <el-col :span="12">
         <el-button class="feedback-btn">Gửi thắc mắc về tiền điện</el-button>
@@ -41,7 +46,13 @@
       </el-col>
     </el-row>
     <!--popup board-->
-    <Popup v-if="!message"/>
+    <Popup v-if="notification.status"/>
+    <!--Setting times board-->
+    <TimeOutModal
+        :dialogFormVisible="dialogFormVisible"
+        :status="modalStatus"
+        :timeSetting="timeSetting"
+    />
   </div>
 </template>
 
@@ -52,12 +63,22 @@ import ElectricTariff from "./ElectricTariff";
 import ComparisonChart from "./ComparisonChart";
 import Popup from "../PopupNotify";
 import ListNotify from "./ListNotify";
+import TimeOutModal from "../TimeOutModal";
+import {mapState} from "vuex";
+import {
+  clearCycles,
+  getDataFromLocalStorage, hourToMs,
+  // hourToMs
+} from "../../ultils/functions";
 
 let timeToChangeView;
+let cycleTimeCallData = null;
+let cycleTimeCallNotify = null;
 
 export default {
   name: 'MainContent',
   components: {
+    TimeOutModal,
     ListNotify,
     Popup,
     ComparisonChart,
@@ -67,40 +88,100 @@ export default {
   },
   data() {
     return {
-      changeView: true
+      changeView: true,
+      modalStatus: false
     }
   },
   methods: {
     handleChangeView() {
       return this.changeView = !this.changeView
     },
-    handleCheckPath(){
-      return this.$route.path == '/electricity-tracking'
+    handleCheckPath() {
+      return this.$route.path === '/electricity-tracking'
+    },
+    dialogFormVisible() {
+      return this.modalStatus = !this.modalStatus;
+    },
+  },
+  computed: mapState({
+    getCustomer: state => state.indexElectric.listData,
+    notification: state => state.indexElectric.notification,
+    isLoading: state => state.indexElectric.isFetching,
+    timeSetting: state => state.indexElectric.timeSetting,
+  }),
+  beforeMount() {
+    const store = this.$store;
+    const {message} = this.notification;
+    //action turn notify
+    if (message !== "CLOSE_NOTIFICATION") {
+      store.dispatch("getNotifyRequest");
+    }
+    store.dispatch("getIdxElectricRequest");
+
+    //Check if data in localStorage is not exist
+    let checkTimeCallData = getDataFromLocalStorage("timeCallData").timeCallData === 0;
+    if (checkTimeCallData) {
+      store.dispatch(
+          "updateTimeRequest",
+          {
+            timeCallData: 1,
+            timeCallNotify: 1
+          }
+      );
+    } else {
+      let {callData, callNotify} = this.timeSetting;
+      let getLocal = getDataFromLocalStorage("timeCallData", "timeCallNotify");
+      if(callData === 0 && callNotify === 0){
+        store.dispatch(
+            "updateTimeRequest",
+            {
+              timeCallData: getLocal.timeCallData,
+              timeCallNotify: getLocal.timeCallNotify
+            }
+        );
+      }
     }
   },
-  computed: {
-    getCustomer() {
-      return this.$store.state.indexElectric.listData
-    },
-    message() {
-      return this.$store.state.indexElectric.notification
-    },
-    isLoading() {
-      return this.$store.state.indexElectric.isFetching
-    },
-  },
-  created() {
-    this.$store.dispatch("getIdxElectricRequest")
-  },
   updated() {
-    if( !this.handleCheckPath() ){
+    const store = this.$store;
+
+    //handle set time cycle to change view
+    if (!this.handleCheckPath()) {
       clearInterval(timeToChangeView)
-    }else{
+    } else {
       clearInterval(timeToChangeView)
       timeToChangeView = setInterval(() => {
         return this.handleChangeView()
-      }, 45000)
+      }, 60000)
     }
+
+    const {callData, callNotify, adjustment} = this.timeSetting;
+    if( adjustment ){
+      //Clear old setInterval
+      clearCycles(cycleTimeCallData, cycleTimeCallNotify);
+
+      const msTimeData = hourToMs(callData);
+      const msTimeNotification = hourToMs(callNotify);
+
+      // Setup time cycle to call request
+      cycleTimeCallData = setInterval(() => store.dispatch("getIdxElectricRequest"), msTimeData)
+      cycleTimeCallNotify = setInterval(() => store.dispatch("getNotifyRequest"), msTimeNotification)
+
+      return store.dispatch("updateTimeSuccess")
+    }
+  },
+  mounted() {
+    const store = this.$store;
+
+    //convert hour to milliseconds
+    const {callData, callNotify} = this.timeSetting;
+    const msTimeData = hourToMs(callData);
+    const msTimeNotification = hourToMs(callNotify);
+
+    // Setup time cycle to call request
+    cycleTimeCallData = setInterval(() => store.dispatch("getIdxElectricRequest"), msTimeData)
+    cycleTimeCallNotify = setInterval(() => store.dispatch("getNotifyRequest"), msTimeNotification)
+    console.log(cycleTimeCallData,cycleTimeCallNotify, msTimeData, msTimeNotification)
   }
 }
 </script>

@@ -2,10 +2,10 @@
   <div id="chart">
     <div class="chart-options">
       <span>Chi tiết lượng điện tiêu thụ</span>
-      <select-component text="Theo tháng" :month="handleCreateListMonth"></select-component>
+      <select-component text="Theo tháng" :list="handleCreateListMonth"></select-component>
     </div>
     <div v-if="isLoading" id="loading">
-      <Loading />
+      <Loading/>
     </div>
     <div class="chart-board" v-else>
       <chart-board
@@ -23,8 +23,8 @@
 <script>
 import ChartBoard from "../Common/ChartBoard";
 import SelectComponent from "../Common/SelectComponent";
-import {createArray} from "../../ultils/functions";
 import Loading from "../Loading";
+import { createArray } from "../../ultils/functions";
 
 export default {
   name: "ComparisonChart",
@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     handleCreateListMonth() {
-      return createArray("Tháng",12)
+      return createArray("Tháng", 12)
     },
     handleAddAtrToData() {
       return [
@@ -48,55 +48,5 @@ export default {
 </script>
 
 <style lang="scss">
-#chart {
-  padding: 32px;
-  border-radius: 24px;
-  box-shadow: 0px 0px 5px #d0d0d0;
-
-  .chart-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .el-select {
-      float: right;
-
-      input {
-        width: 200px;
-        height: 56px;
-        border-radius: 16px;
-        background: #e4e4e44d;
-        padding: 18px 0px 18px 23px;
-
-        &::placeholder {
-          font-size: 14px;
-          font-weight: 600;
-          color: #a9a9ab;
-        }
-
-        &:focus {
-          border: 1px solid #E4E4E4;
-          box-shadow: 0px 0px 5px #f5f5f5;
-        }
-      }
-
-      .el-input__suffix {
-        .el-input__suffix-inner {
-          margin-right: 10px;
-
-          i {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1B1D21;
-          }
-        }
-
-      }
-    }
-  }
-
-  .chart-board {
-    margin-top: 45px;
-  }
-}
+@import "../../styles/ComparisonChart";
 </style>

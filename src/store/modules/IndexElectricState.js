@@ -14,7 +14,10 @@ const {
     TURN_OFF_NOTIFY
 } = NOTIFICATION
 
-const { UPDATE_TIME_TO_CALL_REQUEST } = SETUP_TIME_TO_CALL_ACTION
+const {
+    UPDATE_TIME_TO_CALL_REQUEST,
+    UPDATE_TIME_TO_CALL_SUCCESS
+} = SETUP_TIME_TO_CALL_ACTION
 const state = {
     listData: [],
     isFetching: false,
@@ -25,8 +28,9 @@ const state = {
         data: []
     },
     timeSetting: {
-        callData: 1800000, // equal 30 minutes
-        callNotify: 1800000
+        callData: 0, // equal 30 minutes
+        callNotify: 0,
+        adjustment: false
     }
 }
 
@@ -60,8 +64,12 @@ const mutations = {
 
     //UPDATE TIME TO CALL REQUEST
     UPDATE_TIME_TO_CALL_REQUEST: (state, payload) => {
-        state.timeSetting.callData = payload.convertTimeCallData;
-        state.timeSetting.callNotify = payload.convertTimeCallNotify;
+        state.timeSetting.callData = payload.timeCallData;
+        state.timeSetting.callNotify = payload.timeCallNotify;
+        state.timeSetting.adjustment = true;
+    },
+    UPDATE_TIME_TO_CALL_SUCCESS: (state) => {
+        state.timeSetting.adjustment = false
     }
 }
 
@@ -89,9 +97,14 @@ const actions = {
     },
 
     //Set time out
-    updateTimeData({commit}, payload) {
+    updateTimeRequest({commit}, payload) {
         commit(UPDATE_TIME_TO_CALL_REQUEST, payload);
+    },
+
+    updateTimeSuccess({commit}){
+        commit(UPDATE_TIME_TO_CALL_SUCCESS);
     }
+    //
 }
 
 const getter = {}
