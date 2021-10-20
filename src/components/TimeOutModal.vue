@@ -51,6 +51,7 @@
 
 <script>
 import {setDataToLocalStorage} from '../ultils/functions'
+
 export default {
   name: "TimeOutModal",
   props: {
@@ -89,7 +90,7 @@ export default {
 
       return this.dialogFormVisible();
     },
-    saveToLocal(){
+    saveToLocal() {
       const {callNotify, callData} = this.timeSetting;
       return setDataToLocalStorage(
           ["timeCallNotify", "timeCallData"], [callNotify, callData]
@@ -107,6 +108,15 @@ export default {
   .el-dialog {
     margin-top: 25vh !important;
     width: 30%;
+    @media (max-width: 1366px) {
+      width: 35%;
+    }
+    @media (max-width: 1200px) {
+      width: 40%;
+    }
+    @media (max-width: 1000px) {
+      width: 50%;
+    }
 
     .el-form-item__content {
       display: flex;

@@ -67,8 +67,9 @@ import TimeOutModal from "../TimeOutModal";
 import {mapState} from "vuex";
 import {
   clearCycles,
-  getDataFromLocalStorage, hourToMs,
-  // hourToMs
+  getDataFromLocalStorage,
+  hourToMs,
+  setDataToLocalStorage
 } from "../../ultils/functions";
 
 let timeToChangeView;
@@ -120,7 +121,9 @@ export default {
 
     //Check if data in localStorage is not exist
     let checkTimeCallData = getDataFromLocalStorage("timeCallData").timeCallData === 0;
+    console.log(getDataFromLocalStorage("timeCallData"))
     if (checkTimeCallData) {
+      // alert(checkTimeCallData)
       store.dispatch(
           "updateTimeRequest",
           {
@@ -167,6 +170,7 @@ export default {
       cycleTimeCallData = setInterval(() => store.dispatch("getIdxElectricRequest"), msTimeData)
       cycleTimeCallNotify = setInterval(() => store.dispatch("getNotifyRequest"), msTimeNotification)
 
+      setDataToLocalStorage(['timeCallData', 'timeCallNotify'], [callData, callNotify])
       return store.dispatch("updateTimeSuccess")
     }
   },
@@ -177,6 +181,7 @@ export default {
     const {callData, callNotify} = this.timeSetting;
     const msTimeData = hourToMs(callData);
     const msTimeNotification = hourToMs(callNotify);
+
 
     // Setup time cycle to call request
     cycleTimeCallData = setInterval(() => store.dispatch("getIdxElectricRequest"), msTimeData)

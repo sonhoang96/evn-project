@@ -49,4 +49,9 @@ body {
     font-family: Inter;
   }
 }
+//tooltip
+#tooltip{
+  font-family: Inter;
+  font-size: 14px;
+}
 </style>

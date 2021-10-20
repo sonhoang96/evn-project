@@ -39,7 +39,7 @@ export const setDataToLocalStorage = ([...arg1], [...arg2]) => {
 
     if (arg1.length === arg2.length) {
         for (let i = 0; i < arg1.length; i++) {
-            localStorage.setItem(arg1[i], arg2[i]);
+            window.localStorage.setItem(arg1[i], arg2[i]);
         }
         return;
     }

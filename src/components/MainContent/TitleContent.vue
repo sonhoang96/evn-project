@@ -1,9 +1,18 @@
 <template>
   <el-row>
     <el-col :span="24" class="title">
-      <span>Xin chào {{customer}}</span>
+      <span>Xin chào {{ customer }}</span>
       <h1>Theo dõi điện</h1>
-      <i class="el-icon-setting" @click="dialogFormVisible"></i>
+      <el-tooltip placement="left" effect="light">
+        <div slot="content" id="tooltip">
+          Hiệu chỉnh thời gian
+          <br/>
+          định kì để hệ thống
+          <br/>
+          cập nhật dữ liệu
+        </div>
+        <i class="el-icon-setting" @click="dialogFormVisible"></i>
+      </el-tooltip>
     </el-col>
   </el-row>
 </template>
@@ -19,6 +28,7 @@ export default {
 .title {
   padding-left: 21px;
   position: relative;
+
   span {
     font-size: 18px;
     color: black;
@@ -31,7 +41,8 @@ export default {
     font-size: 40px;
     margin: 0;
   }
-  i{
+
+  i {
     position: absolute;
     top: 50%;
     right: 21px;
@@ -40,15 +51,18 @@ export default {
     animation: rotate 15s infinite;
     cursor: pointer;
     transition: 0.3s;
-    &:hover{
+    outline: none;
+
+    &:hover {
       color: #164399;
     }
   }
+
   @keyframes rotate {
-    0%{
+    0% {
       transform: translate(0, -50%) rotate(0deg);
     }
-    100%{
+    100% {
       transform: translate(0, -50%) rotate(360deg);
     }
   }
