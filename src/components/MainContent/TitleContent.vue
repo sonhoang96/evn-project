@@ -2,7 +2,7 @@
   <el-row>
     <el-col :span="24" class="title">
       <span>Xin chào {{ customer }}</span>
-      <h1>Theo dõi điện</h1>
+      <h1>{{title}}</h1>
       <el-tooltip placement="left" effect="light">
         <div slot="content" id="tooltip">
           Hiệu chỉnh thời gian
@@ -20,7 +20,15 @@
 <script>
 export default {
   name: "TitleContent",
-  props: ['customer', 'dialogFormVisible'],
+  props: ['customer', 'dialogFormVisible', 'handleCheckPath'],
+  data: () => {
+    return{
+      title: 'Theo dõi điện'
+    }
+  },
+  mounted() {
+    if( !this.handleCheckPath()) this.title = "Thông báo"
+  }
 }
 </script>
 
@@ -28,7 +36,6 @@ export default {
 .title {
   padding-left: 21px;
   position: relative;
-
   span {
     font-size: 18px;
     color: black;
@@ -40,6 +47,7 @@ export default {
     font-weight: 600;
     font-size: 40px;
     margin: 0;
+    animation: title 1s forwards;
   }
 
   i {
@@ -65,6 +73,10 @@ export default {
     100% {
       transform: translate(0, -50%) rotate(360deg);
     }
+  }
+  @keyframes title {
+    0%{ opacity: 0.5 }
+    100%{opacity: 1}
   }
 }
 </style>

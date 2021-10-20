@@ -3,6 +3,7 @@
     <title-content
         :customer="getCustomer.CUSTOMER_NAME"
         :dialogFormVisible="dialogFormVisible"
+        :handleCheckPath="handleCheckPath"
     >
     </title-content>
     <el-row class="row-content" :gutter="70" v-if="changeView">
@@ -72,7 +73,7 @@ import {
   setDataToLocalStorage
 } from "../../ultils/functions";
 
-let timeToChangeView;
+// let timeToChangeView;
 let cycleTimeCallData = null;
 let cycleTimeCallNotify = null;
 
@@ -121,7 +122,7 @@ export default {
 
     //Check if data in localStorage is not exist
     let checkTimeCallData = getDataFromLocalStorage("timeCallData").timeCallData === 0;
-    console.log(getDataFromLocalStorage("timeCallData"))
+    // console.log(getDataFromLocalStorage("timeCallData"))
     if (checkTimeCallData) {
       // alert(checkTimeCallData)
       store.dispatch(
@@ -149,14 +150,14 @@ export default {
     const store = this.$store;
 
     //handle set time cycle to change view
-    if (!this.handleCheckPath()) {
-      clearInterval(timeToChangeView)
-    } else {
-      clearInterval(timeToChangeView)
-      timeToChangeView = setInterval(() => {
-        return this.handleChangeView()
-      }, 60000)
-    }
+    // if (!this.handleCheckPath()) {
+    //   clearInterval(timeToChangeView)
+    // } else {
+    //   clearInterval(timeToChangeView)
+    //   timeToChangeView = setInterval(() => {
+    //     return this.handleChangeView()
+    //   }, 60000)
+    // }
 
     const {callData, callNotify, adjustment} = this.timeSetting;
     if( adjustment ){
@@ -186,7 +187,7 @@ export default {
     // Setup time cycle to call request
     cycleTimeCallData = setInterval(() => store.dispatch("getIdxElectricRequest"), msTimeData)
     cycleTimeCallNotify = setInterval(() => store.dispatch("getNotifyRequest"), msTimeNotification)
-    console.log(cycleTimeCallData,cycleTimeCallNotify, msTimeData, msTimeNotification)
+
   }
 }
 </script>

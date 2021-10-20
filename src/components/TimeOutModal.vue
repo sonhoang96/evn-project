@@ -4,7 +4,6 @@
       title="Hiệu chỉnh thời gian"
       :visible.sync="status"
       :before-close="handleCancel"
-      :show-close="true"
   >
     <!--adjustment time here-->
     <el-form :model="form">
@@ -12,21 +11,21 @@
         <el-input-number
             v-model.lazy="form.timeCallNotify"
             controls-position="right"
-            :min="0.1"
+            :min="0.5"
             :precision="1"
             :step="0.1"
         ></el-input-number>
-        <el-input value="Giờ" :disabled="true"></el-input>
+        <el-input value="Giờ" class="time"></el-input>
       </el-form-item>
       <el-form-item label="Cập nhật thông báo:" :label-width="formLabelWidth">
         <el-input-number
             v-model.lazy="form.timeCallData"
             controls-position="right"
-            :min="0.1"
+            :min="0.5"
             :precision="1"
             :step="0.1"
         ></el-input-number>
-        <el-input value="Giờ" :disabled="true"></el-input>
+        <el-input value="Giờ" class="time"></el-input>
       </el-form-item>
     </el-form>
     <!--Button save and cancel-->
@@ -121,7 +120,12 @@ export default {
     .el-form-item__content {
       display: flex;
 
-      .is-disabled {
+      //.is-disabled {
+      //  width: 40px !important;
+      //  margin-left: 10px;
+      //}
+
+      .time{
         width: 60px !important;
         margin-left: 10px;
       }
