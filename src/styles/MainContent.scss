@@ -1,5 +1,4 @@
-$blue: #164399;
-$red: #E1363C;
+@import "./variables";
 .overlay {
   position: absolute;
   margin: 0;
@@ -51,7 +50,7 @@ $red: #E1363C;
     }
 
     .feedback-btn {
-      background: $blue;
+      background: $global-blue;
       box-shadow: 0px 0px 3px #1643996b;
     }
   }

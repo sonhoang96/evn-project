@@ -50,8 +50,15 @@ body {
   }
 }
 //tooltip
-#tooltip{
+#tooltip, .el-notification{
   font-family: Inter;
   font-size: 14px;
+}
+
+//notification
+.el-notification{
+  .el-notification__icon{
+    color: #164399 !important;
+  }
 }
 </style>

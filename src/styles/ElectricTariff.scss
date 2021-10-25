@@ -1,9 +1,10 @@
+@import "./variables";
 #board, #loading {
   //height: 500px;
   background: #ffffff;
   border-radius: 24px;
   padding: 35px;
-  box-shadow: 0px 0px 5px #d0d0d0;
+  box-shadow: $global-shadow;
   @media (max-width: 1024px) {
     padding: 32px;
     height: 338px;
@@ -16,7 +17,7 @@
 
   .index-electric {
     font-size: 56px;
-    color: #1F499D;
+    color: $global-blue;
     font-weight: 600;
     margin-top: 45px;
     margin-bottom: 18px;
@@ -93,7 +94,7 @@
 
         p {
           font-size: 32px;
-          color: #11142D;
+          color: $global-color__black;
           margin-top: 8px;
           margin-bottom: 11px;
         }

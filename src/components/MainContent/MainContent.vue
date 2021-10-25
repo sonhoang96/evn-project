@@ -52,141 +52,135 @@
         :dialogFormVisible="dialogFormVisible"
         :status="modalStatus"
         :timeSetting="timeSetting"
+        :updateTime="updateTime"
     />
   </div>
 </template>
 
 <script>
-import TitleContent from "./TitleContent";
-import TempoElectricBill from "./TemporaryElectricBill";
-import ElectricTariff from "./ElectricTariff";
-import ComparisonChart from "./ComparisonChart";
+import {
+  hourToMs,
+  clearCycles,
+  setDataToLocalStorage,
+  getDataFromLocalStorage,
+} from "../../ultils/functions";
 import Popup from "../PopupNotify";
 import ListNotify from "./ListNotify";
+import TitleContent from "./TitleContent";
 import TimeOutModal from "../TimeOutModal";
-import {mapState} from "vuex";
-import {
-  clearCycles,
-  getDataFromLocalStorage,
-  hourToMs,
-  setDataToLocalStorage
-} from "../../ultils/functions";
+import ElectricTariff from "./ElectricTariff";
+import ComparisonChart from "./ComparisonChart";
+import TempoElectricBill from "./TemporaryElectricBill";
+import {mapState, mapActions} from "vuex";
 
 let timeToChangeView;
 let cycleTimeCallData = null;
 let cycleTimeCallNotify = null;
 
+let timer = 60000;
+
 export default {
   name: 'MainContent',
   components: {
-    TimeOutModal,
-    ListNotify,
     Popup,
-    ComparisonChart,
+    ListNotify,
+    TitleContent,
+    TimeOutModal,
     ElectricTariff,
+    ComparisonChart,
     TempoElectricBill,
-    TitleContent
   },
   data() {
     return {
       changeView: true,
-      modalStatus: false
+      modalStatus: false,
     }
   },
   methods: {
+    ...mapActions({
+      getNotify: 'getNotifyRequest',
+      updateTime: 'updateTimeRequest',
+      updateTimeSuccess: 'updateTimeSuccess',
+      getElectricTariff: 'getIdxElectricRequest',
+    }),
     handleChangeView() {
-      return this.changeView = !this.changeView
-    },
-    handleCheckPath() {
-      return this.$route.path === '/electricity-tracking'
+      return this.changeView = !this.changeView;
     },
     dialogFormVisible() {
       return this.modalStatus = !this.modalStatus;
     },
+    handleCheckPath() {
+      return this.$route.path === '/electricity-tracking';
+    },
+    setTimeToDispatch(){
+      let {callData, callNotify} = this.timeSetting;
+      let msTimeData = hourToMs(callData);
+      let msTimeNotification = hourToMs(callNotify);
+
+      //Clear old setInterval
+      clearCycles(cycleTimeCallData, cycleTimeCallNotify);
+
+      // Setup time cycle to call request
+      cycleTimeCallData = setInterval(() => this.getElectricTariff(), msTimeData);
+      cycleTimeCallNotify = setInterval(() => this.getNotify(), msTimeNotification);
+      return;
+    }
   },
   computed: mapState({
     getCustomer: state => state.indexElectric.listData,
-    notification: state => state.indexElectric.notification,
     isLoading: state => state.indexElectric.isFetching,
     timeSetting: state => state.indexElectric.timeSetting,
+    notification: state => state.indexElectric.notification,
   }),
   beforeMount() {
-    const store = this.$store;
     const {message} = this.notification;
+    const {callData, callNotify} = this.timeSetting;
+    const getLocal = getDataFromLocalStorage("timeCallData", "timeCallNotify");
+    const checkTimeCallData = getLocal.timeCallData === 0;
+
     //action turn notify
     if (message !== "CLOSE_NOTIFICATION") {
-      store.dispatch("getNotifyRequest");
+      this.getNotify();
     }
-    store.dispatch("getIdxElectricRequest");
+    this.getElectricTariff();
 
-    //Check if data in localStorage is not exist
-    let checkTimeCallData = getDataFromLocalStorage("timeCallData").timeCallData === 0;
-    console.log(getDataFromLocalStorage("timeCallData"))
-    if (checkTimeCallData) {
-      // alert(checkTimeCallData)
-      store.dispatch(
-          "updateTimeRequest",
-          {
-            timeCallData: 1,
-            timeCallNotify: 1
-          }
-      );
+    //Check existence of timeCallData in localStorages
+    if ( checkTimeCallData ) {
+      return this.updateTime({
+        timeCallData: 1,
+        timeCallNotify: 1
+      });
     } else {
-      let {callData, callNotify} = this.timeSetting;
-      let getLocal = getDataFromLocalStorage("timeCallData", "timeCallNotify");
-      if(callData === 0 && callNotify === 0){
-        store.dispatch(
-            "updateTimeRequest",
-            {
-              timeCallData: getLocal.timeCallData,
-              timeCallNotify: getLocal.timeCallNotify
-            }
-        );
+      //Initial callData and callNotify are equal 0
+      if (callData === 0 && callNotify === 0) {
+        return this.updateTime({
+          timeCallData: getLocal.timeCallData,
+          timeCallNotify: getLocal.timeCallNotify
+        });
       }
     }
   },
   updated() {
-    const store = this.$store;
+    const {callData, callNotify, adjustment} = this.timeSetting;
 
     //handle set time cycle to change view
     if (!this.handleCheckPath()) {
-      clearInterval(timeToChangeView)
+      clearCycles(timeToChangeView);
     } else {
-      clearInterval(timeToChangeView)
-      timeToChangeView = setInterval(() => {
-        return this.handleChangeView()
-      }, 60000)
+      clearCycles(timeToChangeView);
+      timeToChangeView = setInterval(() => this.handleChangeView(), timer);
     }
 
-    const {callData, callNotify, adjustment} = this.timeSetting;
-    if( adjustment ){
-      //Clear old setInterval
-      clearCycles(cycleTimeCallData, cycleTimeCallNotify);
-
-      const msTimeData = hourToMs(callData);
-      const msTimeNotification = hourToMs(callNotify);
-
-      // Setup time cycle to call request
-      cycleTimeCallData = setInterval(() => store.dispatch("getIdxElectricRequest"), msTimeData)
-      cycleTimeCallNotify = setInterval(() => store.dispatch("getNotifyRequest"), msTimeNotification)
-
-      setDataToLocalStorage(['timeCallData', 'timeCallNotify'], [callData, callNotify])
-      return store.dispatch("updateTimeSuccess")
+    if ( adjustment ) {
+      setDataToLocalStorage(['timeCallData', 'timeCallNotify'], [callData, callNotify]);
+      this.setTimeToDispatch()
+      return this.updateTimeSuccess();
     }
+
+    return;
   },
   mounted() {
-    const store = this.$store;
-
-    //convert hour to milliseconds
-    const {callData, callNotify} = this.timeSetting;
-    const msTimeData = hourToMs(callData);
-    const msTimeNotification = hourToMs(callNotify);
-
-
-    // Setup time cycle to call request
-    cycleTimeCallData = setInterval(() => store.dispatch("getIdxElectricRequest"), msTimeData)
-    cycleTimeCallNotify = setInterval(() => store.dispatch("getNotifyRequest"), msTimeNotification)
-    console.log(cycleTimeCallData,cycleTimeCallNotify, msTimeData, msTimeNotification)
+    this.setTimeToDispatch()
   }
 }
 </script>

@@ -1,7 +1,8 @@
+@import "./variables";
 #chart {
   padding: 32px;
   border-radius: 24px;
-  box-shadow: 0px 0px 5px #d0d0d0;
+  box-shadow: $global-shadow;
 
   .chart-options {
     display: flex;
@@ -19,15 +20,15 @@
         padding: 18px 0px 18px 23px;
         font-family: 'Inter';
         font-weight: 600;
-
+        box-shadow: 0px 0px 5px #e7e7e7;
+        border: none;
         &::placeholder {
           font-size: 14px;
           color: #a9a9ab;
         }
 
         &:focus {
-          border: 1px solid #E4E4E4;
-          box-shadow: 0px 0px 5px #f5f5f5;
+          box-shadow: $global-shadow;
         }
       }
 
@@ -49,4 +50,12 @@
   .chart-board {
     margin-top: 45px;
   }
+}
+#loading-comparison{
+  background: #ffffff;
+  border-radius: 24px;
+  margin: 35px;
+  //box-shadow: $global-shadow;
+  height: 330px;
+  display: flex;
 }

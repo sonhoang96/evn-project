@@ -4,7 +4,7 @@
       <span>Chi tiết lượng điện tiêu thụ</span>
       <select-component text="Theo tháng" :list="handleCreateListMonth"></select-component>
     </div>
-    <div v-if="isLoading" id="loading">
+    <div v-if="isLoading" id="loading-comparison">
       <Loading/>
     </div>
     <div class="chart-board" v-else>
