@@ -10,7 +10,7 @@
     <el-form :model="form" label-position="left">
       <el-form-item label="Cập nhật dữ liệu:" :label-width="formLabelWidth">
         <el-input-number
-            v-model.lazy="form.timeCallNotify"
+            v-model.lazy="form.timeCallData"
             controls-position="right"
             :min="0.1"
             :precision="1"
@@ -23,7 +23,7 @@
       </el-form-item>
       <el-form-item label="Cập nhật thông báo:" :label-width="formLabelWidth">
         <el-input-number
-            v-model.lazy="form.timeCallData"
+            v-model.lazy="form.timeCallNotify"
             controls-position="right"
             :min="0.1"
             :precision="1"
@@ -34,11 +34,11 @@
             class="dialog-input__display-time"
         ></el-input>
       </el-form-item>
-<!--      <el-switch-->
-<!--          v-model="value"-->
-<!--          active-color="#164399"-->
-<!--      >-->
-<!--      </el-switch>-->
+      <!--      <el-switch-->
+      <!--          v-model="value"-->
+      <!--          active-color="#164399"-->
+      <!--      >-->
+      <!--      </el-switch>-->
     </el-form>
     <!--Button save and cancel-->
     <span slot="footer" class="dialog-footer">
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import {setDataToLocalStorage} from '../ultils/functions'
+import {setDataToLocalStorage, hourToMinutes} from '../ultils/functions'
 
 export default {
   name: "TimeOutModal",
@@ -85,9 +85,19 @@ export default {
     //save time selection of user to localStorage
     handleSaveTime() {
       const {timeCallNotify, timeCallData} = this.form;
+      const convertTimeData = hourToMinutes(timeCallData);
+      const convertTimeNotify = hourToMinutes(timeCallNotify);
+      const message = `
+            <p>Cập nhật dữ liệu là
+                <b>${convertTimeData}p/lần</b>
+                <br/>
+                Cập nhật thông báo là
+                <b>${convertTimeNotify}p/lần</b>
+            </p>`
+      ;
       this.$notify({
         title: 'Lưu thành công',
-        message: '<p>Cập nhật dữ liệu là <b>15p/lần</b> <br/> Cập nhật thông báo là <b>60p/lần</b></p>',
+        message: message,
         dangerouslyUseHTMLString: true,
         type: 'success',
         showClose: false,
